@@ -51,8 +51,9 @@
             <ul class="nav navbar-nav pull-right">
                 <li class="active"><a href="${pageContext.request.contextPath}/">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/movie/info/movies">Baza filmów</a></li>
+                <li><a href="${pageContext.request.contextPath}/movie/repertoire">Repertuar</a></li>
                 <security:authorize access="hasAuthority('USER')">
-                    <li><a href="${pageContext.request.contextPath}/booking">Rezerwacje</a></li>
+                    <li><a href="${pageContext.request.contextPath}/booking">Moje rezerwacje</a></li>
                 </security:authorize>
                 <security:authorize access="hasAuthority('ADMIN')">
                     <li><a href="${pageContext.request.contextPath}/admin/userManage"></a></li>

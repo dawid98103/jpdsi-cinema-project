@@ -52,7 +52,7 @@ public class MovieController {
         return modelAndView;
     }
 
-    @GetMapping("/reservation")
+    @GetMapping("/repertoire")
     public ModelAndView showReservationPage(@ModelAttribute("date") ShowingDateModel showingDateModel) {
         ModelAndView modelAndView = new ModelAndView();
         System.out.println(showingDateModel);
@@ -61,7 +61,7 @@ public class MovieController {
                 : showingService.getShowingsForSpecificPeriod(showingDateModel);
         modelAndView.addObject("showingDates", showingDateModel);
         modelAndView.addObject("showings", showings);
-        modelAndView.setViewName("showingPage");
+        modelAndView.setViewName("repertoire");
         return modelAndView;
     }
 }

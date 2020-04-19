@@ -1,6 +1,10 @@
 package pl.paw.calc.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
+import pl.paw.calc.utils.serialization.CustomLocalDateTimeDeserializer;
+import pl.paw.calc.utils.serialization.CustomLocalDateTimeSerializer;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -21,8 +25,11 @@ public class Showing {
     @Column(name = "showing_id")
     int showingId;
 
+
     @Column(name = "showing_date")
-    private Date showingDate;
+    @JsonSerialize(using = CustomLocalDateTimeSerializer.class)
+    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
+    private LocalDateTime showingDate;
 
     @ManyToMany
     @JoinTable(

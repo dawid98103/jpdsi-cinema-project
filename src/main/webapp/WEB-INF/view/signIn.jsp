@@ -36,15 +36,17 @@
                         <c:if test="${param.error}">
                             <b><p class="text-danger text-center">Zła nazwa użytkownika lub hasło</p></b>
                         </c:if>
-                        <div class="row">
+                        <div class="login-bottom-row">
                                 <%--                                <div class="col-lg-8">--%>
                                 <%--                                    <b><a href="">Zapomniałeś hasła?</a></b>--%>
                                 <%--                                </div>--%>
-                            <div class="col-lg-8">
+                            <div>
                                 <b><a href="${pageContext.request.contextPath}/login/registration">Utwórz konto</a></b>
                             </div>
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                            <button class="btn btn-action" type="submit">Zaloguj</button>
+                            <div>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <button class="btn btn-action" type="submit">Zaloguj</button>
+                            </div>
                         </div>
                     </div>
                     </form:form>

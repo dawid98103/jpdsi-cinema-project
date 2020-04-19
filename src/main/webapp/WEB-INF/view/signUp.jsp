@@ -66,7 +66,7 @@
                                 </div>
                             </spring:bind>
                             <hr>
-                            <div class="row">
+                            <div class="login-bottom-row">
                                 <div class="col-lg-8">
                                     <a href="/login/login"><< Wróć</a>
                                 </div>
