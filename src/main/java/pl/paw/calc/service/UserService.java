@@ -1,6 +1,6 @@
 package pl.paw.calc.service;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.paw.calc.entity.Role;
 import pl.paw.calc.entity.User;
@@ -13,7 +13,7 @@ import java.util.HashSet;
 import static pl.paw.calc.utils.BcryptEncoder.passwordEncoder;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
@@ -34,7 +34,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public boolean isUsernameExists(String username){
+    public boolean isUsernameExists(String username) {
         return userRepository.existsByUserName(username);
     }
 }

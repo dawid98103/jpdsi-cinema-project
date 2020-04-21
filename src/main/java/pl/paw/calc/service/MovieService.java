@@ -13,7 +13,6 @@ import java.util.List;
 public class MovieService {
 
     private final MovieRepository movieRepository;
-    private final ShowingService showingService;
 
     public List<Movie> findAll() {
         return movieRepository.findAll();
