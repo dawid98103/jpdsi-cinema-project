@@ -15,9 +15,6 @@
         <div class="home-photo">
             <a href="${pageContext.request.contextPath}/movie/info/${movie.movieId}" class="thumbnail">
                 <img src="${movie.movieSmallUrl}" alt="${movie.movieDescription}">
-<%--                <div class="middle">--%>
-<%--                    <div class="home-photo-text">${movie.movieName}</div>--%>
-<%--                </div>--%>
             </a>
         </div>
     </c:forEach>

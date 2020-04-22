@@ -7,8 +7,7 @@ import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
@@ -39,8 +38,9 @@ public class Movie {
     @Column(name = "movie_director")
     private String movieDirector;
 
-    @Column(name = "movie_genre_id")
-    private Integer movieGenreId;
+    @ManyToOne
+    @JoinColumn(name = "movie_genre_id", nullable = true)
+    private MovieGenre movieGenre;
 
     @ManyToMany(mappedBy = "movies")
     private Set<Showing> showings;

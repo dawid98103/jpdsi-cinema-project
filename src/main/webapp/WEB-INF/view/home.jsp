@@ -21,7 +21,7 @@
 <!-- Intro -->
 <div class="container text-center photo-horizontal-container">
     <div class="row photos-row">
-        <c:forEach items="${movieList}" var="movie" begin="0" end="4">
+        <c:forEach items="${movieList}" var="movie" begin="0" end="5">
             <div class="home-photo col-lg-2 col-md-4 col-sm-6">
                 <a href="${pageContext.request.contextPath}/movie/info/${movie.movieId}" class="thumbnail">
                     <img src="${movie.movieSmallUrl}" alt="${movie.movieDescription}">
@@ -77,6 +77,5 @@
         </div> <!-- /row  -->
     </div>
 </div>
-<!-- /Highlights -->
 <%@include file="footer.jsp" %>
 </html>

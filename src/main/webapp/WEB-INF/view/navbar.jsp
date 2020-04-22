@@ -14,7 +14,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <meta name="description" content="Projekt zaliczeniowy pwai">
     <meta name="author" content="Sergey Pozhilov (GetTemplate.com)">
 
     <title>Cinema City</title>
@@ -45,23 +45,30 @@
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                     class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/"><i class="fas fa-video"></i>  CINEMA CITY</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/"><i class="fas fa-video"></i> CINEMA CITY</a>
         </div>
+        <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+        <c:set var="pagina" value="${requestScope['javax.servlet.forward.request_uri']}"/>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav pull-right">
-                <li class="active"><a href="${pageContext.request.contextPath}/">Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/movie/info/movies">Baza filmów</a></li>
-                <li><a href="${pageContext.request.contextPath}/movie/repertoire">Repertuar</a></li>
+                <li class="${pagina.endsWith('/') ? 'active' : ''}"><a
+                        href="${ctx}/">Home</a></li>
+                <li class="${pagina.endsWith('/movies') ? 'active' : ''}"><a
+                        href="${ctx}/movie/info/movies">Baza filmów</a></li>
+                <li class="${pagina.endsWith('/repertoire') ? 'active' : ''}"><a
+                        href="${pageContext.request.contextPath}/movie/repertoire">Repertuar</a></li>
                 <security:authorize access="hasAuthority('USER')">
-                    <li><a href="${pageContext.request.contextPath}/booking">Moje rezerwacje</a></li>
+                    <li class="nav-button"><a href="${ctx}/booking">Moje rezerwacje</a></li>
                 </security:authorize>
                 <security:authorize access="hasAuthority('ADMIN')">
-                    <li><a href="${pageContext.request.contextPath}/admin/userManage"></a></li>
+                    <li class="nav-button"><a href="${ctx}/admin/userManage"></a></li>
                 </security:authorize>
-                <li><a href="${pageContext.request.contextPath}/priceList/showPriceList">Cennik</a></li>
+                <li class="${pagina.endsWith('/showPriceList') ? 'active' : ''}"><a
+                        href="${ctx}/priceList/showPriceList">Cennik</a>
+                </li>
                 <sec:authorize access="!isAuthenticated()">
-                    <li>
-                        <a class="btn" href="${pageContext.request.contextPath}/login/login">
+                    <li class="nav-button">
+                        <a class="${pagina.endsWith('/loginForm') ? 'active' : ''}" href="${ctx}/login/loginForm">
                             Zaloguj
                         </a>
                     </li>

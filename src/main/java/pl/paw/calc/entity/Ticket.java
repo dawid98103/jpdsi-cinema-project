@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Table(name = "ticket")
@@ -29,5 +30,9 @@ public class Ticket {
     @Column(name = "ticket_price")
     private BigDecimal price;
 
+    @OneToMany(mappedBy = "ticket")
+    private Set<Reservation> movieReservation;
+
+    @Column(name = "active")
     private boolean active;
 }

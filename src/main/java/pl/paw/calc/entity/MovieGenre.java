@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import pl.paw.calc.utils.enums.MovieGenreEnum;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "movie_genre")
@@ -19,7 +20,9 @@ public class MovieGenre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int movieGenreId;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "movie_genre_name")
-    private MovieGenreEnum movieGenreName;
+    @Column(name = "name")
+    private String movieGenreName;
+
+    @OneToMany(mappedBy = "movieGenre")
+    private Set<Movie> movies;
 }

@@ -26,10 +26,11 @@ public class Reservation implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "movie_id")
-    public Movie movie;
+    private Movie movie;
 
-    @Column(name = "ticket_it")
-    private int ticketId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ticket_id")
+    private Ticket ticket;
 
     @Column(name = "reservation_date_start")
     private LocalDateTime reservationDateStart;

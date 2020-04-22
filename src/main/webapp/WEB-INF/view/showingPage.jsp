@@ -12,10 +12,9 @@
 <%@include file="navbar.jsp" %>
 
 <div class="container">
-
     <div class="navigation-panel">
         <div class="panel panel-margin">
-            <c:url value="/movie/reservation" var="reservation"></c:url>
+            <c:url value="/movie/repertoire" var="reservation"></c:url>
             <form:form method="get" modelAttribute="showingDates" action="${reservation}">
                 <div class="row">
                     <div class="col-lg-4">

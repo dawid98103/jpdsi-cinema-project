@@ -18,7 +18,7 @@
                     <div class="row movie-info-row">
                         <div class="col-lg-8">
                             <div class="movie-title">
-                                <h3>${movie.movieName}</h3> <div>Czas trwania: ${movie.movieDuration}min <i class="far fa-clock"></i></div>
+                                <h3>${movie.movieName}</h3> <div>Czas trwania: ${movie.movieDuration} min <i class="far fa-clock"></i></div>
                             </div>
                             <hr>
                             <div class="movie-description">
@@ -30,9 +30,9 @@
                                 <img src="${movie.movieSmallUrl}" alt="${movie.movieDescription}"/>
                             </a>
                             <div class="panel movie-info-panel">
-                                <div>Gatunek: Akcja</div>
+                                <div>Gatunek: Familijny</div>
                                 <hr style="margin:10px">
-                                <div>Reżyser: Polański</div>
+                                <div>Reżyser: Anthony Russo/Joe Russo</div>
                             </div>
                         </div>
                     </div>
