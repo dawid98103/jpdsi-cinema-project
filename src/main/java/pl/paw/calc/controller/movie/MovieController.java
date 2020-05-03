@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import pl.paw.calc.entity.Movie;
+import pl.paw.calc.entity.Ticket;
 import pl.paw.calc.service.MovieService;
+import pl.paw.calc.service.TicketService;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -18,6 +20,7 @@ import java.util.logging.Logger;
 public class MovieController {
 
     private final MovieService movieService;
+    private final TicketService ticketService;
 
     private Logger logger = Logger.getLogger(getClass().getName());
 
@@ -41,7 +44,6 @@ public class MovieController {
         modelAndView.setViewName("movieInfo");
         return modelAndView;
     }
-
 //    @GetMapping("/repertoire")
 //    public ModelAndView showReservationPage(@ModelAttribute("date") ShowingDateModel showingDateModel) {
 //        ModelAndView modelAndView = new ModelAndView();

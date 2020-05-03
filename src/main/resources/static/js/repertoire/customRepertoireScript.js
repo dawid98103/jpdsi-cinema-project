@@ -39,17 +39,7 @@ function getShowingsByDate() {
             })
             $("#showingTable tbody").append(trHTML);
 
-            $("#reservationModal").on('show.bs.modal', (e) => {
-                let movieId = $(e.relatedTarget).data('movie-id');
-                let showingId = $(e.relatedTarget).data('showing-id');
-                let movieName = $(e.relatedTarget).data('movie-name');
-                let showingDate = $(e.relatedTarget).data('movie-date');
-                let moviePhoto = $(e.relatedTarget).data('movie-photo')
-
-                $(e.currentTarget).find('span.movie-name').text(movieName);
-                $(e.currentTarget).find('span.movie-date').text(showingDate);
-                $(e.currentTarget).find('#modal-img').attr('src', moviePhoto);
-            });
+            initializeModal();
 
             (data.length === 0) ? showingsErrorAlert.removeClass("hidden") : showingsErrorAlert.addClass("hidden");
         },
@@ -60,9 +50,64 @@ function getShowingsByDate() {
     })
 }
 
+function initializeModal() {
+    $("#reservationModal").on('show.bs.modal', (e) => {
+        $('#ticket-type').find("option").remove();
+        $.ajax({
+            type: "GET",
+            url: "/ticket",
+            dateType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: (data, status) => {
+                data.forEach(ticket => {
+                    let option = new Option(ticket.type, ticket.ticketId)
+                    $(option).html(ticket.type);
+                    $('#ticket-type').append(option);
+                })
+            },
+            error: (reqeust) => {
+                alert(reqeust.responseJSON.message);
+            }
+        })
+
+        let movieId = $(e.relatedTarget).data('movie-id');
+        let showingId = $(e.relatedTarget).data('showing-id');
+        let movieName = $(e.relatedTarget).data('movie-name');
+        let showingDate = $(e.relatedTarget).data('movie-date');
+        let moviePhoto = $(e.relatedTarget).data('movie-photo')
+
+        $("#reservationButton").click(() => {
+            saveReservation({
+                "movieId": movieId,
+                "showingId": showingId,
+                "ticketQuantity": parseInt($("#ticket-quantity").val()),
+                "ticketId": parseInt($("#ticket-type").val())
+            });
+        })
+
+        $(e.currentTarget).find('span.movie-name').text(movieName);
+        $(e.currentTarget).find('span.movie-date').text(showingDate);
+        $(e.currentTarget).find('#modal-img').attr('src', moviePhoto);
+    });
+}
+
+function saveReservation(reservationModel) {
+    console.log(reservationModel);
+    $.ajax({
+        type: "POST",
+        url: '/reservation',
+        dateType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(reservationModel),
+        success: (response) => {
+            console.log(response);
+        }
+    })
+}
+
 function initializeDatePicker(){
     $(function () {
-        let dateFormat = "mm/dd/yy",
+        let dateFormat = "dd/mm/yy",
             from = $("#from").datepicker({
                 defaultDate: new Date(),
                 changeMonth: true,

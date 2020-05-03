@@ -10,51 +10,42 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
 <%@include file="navbar.jsp" %>
-<!-- container -->
-<div class="container">
-    <div class="row">
-        <!-- Article main content -->
-        <article class="col-xs-12 maincontent">
-            <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                <div class="panel panel-default form-panel">
-                    <div class="panel-body">
-                        <h3 class="thin text-center">Zaloguj się</h3>
-                        <hr>
-                        <c:url var="loginUrl" value="/login"/>
-                        <form:form action="${loginUrl}" method="post">
-                        <div class="${param.error ? 'has-error' : ''} top-margin">
-                            <label>Nazwa użytkownika:</label>
-                            <input type="text" name="user_name" class="form-control">
-                        </div>
-                        <div class="${param.error ? 'has-error' : ''} top-margin">
-                            <label>Hasło:</label>
-                            <input type="password" name="password" class="form-control">
-                        </div>
-                        <hr>
-                        <c:if test="${param.error}">
-                            <b><p class="text-danger text-center">Zła nazwa użytkownika lub hasło</p></b>
-                        </c:if>
-                        <div class="login-bottom-row">
-                                <%--                                <div class="col-lg-8">--%>
-                                <%--                                    <b><a href="">Zapomniałeś hasła?</a></b>--%>
-                                <%--                                </div>--%>
-                            <div>
-                                <b><a href="${pageContext.request.contextPath}/login/registration">Utwórz konto</a></b>
-                            </div>
-                            <div>
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <button class="btn btn-action" type="submit">Zaloguj</button>
-                            </div>
-                        </div>
-                    </div>
-                    </form:form>
-                </div>
+
+<div class="container top-margin">
+    <div class="my-login-form">
+        <div class="text-center">
+            <div class="header-title">
+                <h1 class="wv-heading--title">
+                    Zaloguj się
+                </h1>
             </div>
-        </article>
-        <!-- /Article -->
+        </div>
+        <div class="mx-auto">
+            <div class="myform form ">
+                <c:url var="loginUrl" value="/login"/>
+                <form:form action="${loginUrl}" method="post">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        <input type="text" name="user_name" class="form-control my-input" placeholder="Login">
+                    </div>
+
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        <input type="password" name="password" class="form-control my-input" placeholder="Hasło">
+                    </div>
+
+                    <div class="text-center ">
+                        <button type="submit" class=" btn btn-block send-button tx-tfm">Zaloguj</button>
+                    </div>
+                    <c:if test="${param.error}">
+                        <b><p class="text-danger text-center">Zła nazwa użytkownika lub hasło</p></b>
+                    </c:if>
+                    <p class="small mt-3">By signing up, you are indicating that you have read and agree to the <a
+                            href="#" class="ps-hero__content__link">Terms of Use</a> and <a href="#">Privacy Policy</a>.
+                    </p>
+                </form:form>
+            </div>
+        </div>
     </div>
-</div>    <!-- /container -->
+</div>
+<!-- /container -->
 <%@include file="footer.jsp" %>
-</html>

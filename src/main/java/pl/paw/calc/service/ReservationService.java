@@ -1,11 +1,9 @@
 package pl.paw.calc.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import pl.paw.calc.entity.Movie;
-import pl.paw.calc.entity.Reservation;
-import pl.paw.calc.entity.Showing;
-import pl.paw.calc.entity.Ticket;
+import pl.paw.calc.entity.*;
 import pl.paw.calc.model.request.AddReservationRequest;
 import pl.paw.calc.repository.ReservationRepository;
 

@@ -77,6 +77,13 @@
                         </a>
                     </li>
                 </sec:authorize>
+                <sec:authorize access="!isAuthenticated()">
+                    <li class="nav-button">
+                        <a class="${pagina.endsWith('/registration') ? 'active' : ''}" href="${ctx}/login/registration">
+                            Zarejestruj
+                        </a>
+                    </li>
+                </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
                     <%--                    <li>--%>
                     <%--                        <a href="/">--%>

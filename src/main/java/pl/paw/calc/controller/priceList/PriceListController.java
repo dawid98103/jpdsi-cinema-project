@@ -29,7 +29,7 @@ public class PriceListController {
     public ModelAndView showPriceList() {
         ModelAndView modelAndView = new ModelAndView();
         logger.info("Pobieram listę dostępnych biletów");
-        List<Ticket> availableTickets = ticketService.getAvailableTickets();
+        List<Ticket> availableTickets = ticketService.findAvailableTickets();
         logger.info(String.format("Pobrano %d biletów", availableTickets.size()));
         modelAndView.addObject("tickets", availableTickets);
         modelAndView.setViewName("priceList");

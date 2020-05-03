@@ -20,18 +20,17 @@
                         <div class="form-group">
                             <label for="ticket-type">Typ:</label>
                             <select class="form-control" id="ticket-type">
-                                <option>Normalny</option>
-                                <option>Ulgowy</option>
+
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="ticket-quantity">Ilość:</label>
                             <select class="form-control" id="ticket-quantity">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
                             </select>
                         </div>
                     </div>
@@ -44,7 +43,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-                <button type="button" class="btn btn-primary">Rezerwuj</button>
+                <button type="button" class="btn btn-primary" id="reservationButton">Rezerwuj</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

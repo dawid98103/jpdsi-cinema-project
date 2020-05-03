@@ -9,6 +9,10 @@ hr {
     background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }
 
+form{
+    color: white;
+}
+
 /* Header */
 #head {
     background-image: url("https://static.rogerebert.com/uploads/review/primary_image/reviews/dora-and-the-lost-city-of-gold-movie-review-2019/hero_dora-lost-city-of-gold-movie-review-1.jpg");
@@ -117,11 +121,6 @@ hr {
     }
 }
 
-/* forms */
-.form-panel {
-    margin-top: 150px;
-}
-
 /* Autohide navbar */
 .slideUp {
     top: -100px;
@@ -212,7 +211,7 @@ ul.list-spaces li {
 }
 
 .top-margin {
-    margin-top: 20px;
+    margin-top: 150px;
 }
 
 img {
@@ -479,5 +478,81 @@ div.login-bottom-row {
 
 div.login-bottom-row > div {
     float: left;
+}
+
+/*signUp styles*/
+.my-login-form{
+    margin: 0px auto 40px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 45%;
+    padding: 10px;
+    border: 2px solid rgba(62, 62, 62, 0.5);
+}
+
+.login-form{
+    margin: auto;
+    width: 60%;
+}
+
+.send-button{
+    background: #54C7C3;
+    width:100%;
+    font-weight: 600;
+    color: #ffffff;
+    padding: 8px 25px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.my-input{
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: text;
+    padding: 8px 10px;
+    transition: border .1s linear;
+}
+.header-title{
+    color: white;
+    margin-bottom: 1em;
+}
+h1{
+    font-size: 31px;
+    line-height: 40px;
+    font-weight: 600;
+    color:#4c5357;
+}
+h2{
+    color: #5e8396;
+    font-size: 21px;
+    line-height: 32px;
+    font-weight: 400;
+}
+.login-or {
+    position: relative;
+    color: #aaa;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+}
+.hr-or {
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
 }
 
