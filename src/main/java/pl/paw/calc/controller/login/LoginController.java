@@ -22,7 +22,7 @@ public class LoginController {
     private final UserService userService;
     private Logger logger = Logger.getLogger(getClass().getName());
 
-    @GetMapping("/loginForm")
+    @GetMapping("/login")
     public ModelAndView showLoginForm() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("signIn");

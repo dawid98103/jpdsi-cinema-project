@@ -42,9 +42,6 @@ public class Movie {
     @JoinColumn(name = "movie_genre_id", nullable = true)
     private MovieGenre movieGenre;
 
-    @ManyToMany(mappedBy = "movies")
-    private Set<Showing> showings;
-
     @OneToMany(mappedBy = "movie")
     private Set<Reservation> movieReservation;
 }

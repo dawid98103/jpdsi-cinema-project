@@ -12,11 +12,27 @@
 <%@include file="navbar.jsp" %>
 <div class="container">
     <div class="panel panel-price-list">
-        <ul class="list-group">
+        <table class="table table-striped" id="price-list-table">
+            <thead class="text-center">
+            <tr>
+                <td colspan="2">
+                    <h4>Cennik</h4>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
             <c:forEach items="${tickets}" var="ticket">
-                <li class=list-group-item>${ticket.type}   ${ticket.price}zł</li>
+                <tr>
+                    <td>
+                            ${ticket.type}
+                    </td>
+                    <td>
+                            ${ticket.price}zł
+                    </td>
+                </tr>
             </c:forEach>
-        </ul>
+            </tbody>
+        </table>
     </div>
 </div>
 <%@include file="footer.jsp" %>

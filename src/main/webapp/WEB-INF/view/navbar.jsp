@@ -19,7 +19,13 @@
 
     <title>Cinema City</title>
 
-    <link rel="shortcut icon" href="/images/gt_favicon.png">
+    <link rel="shortcut icon" href="/images/icons8-movie-64.png">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -29,10 +35,6 @@
     <link rel="stylesheet" href="/css/bootstrap-theme.css" media="screen">
     <link rel="stylesheet" href="/css/main.css">
 
-    <!-- JQuerry for datapicker -->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="/js/html5shiv.js"></script>
@@ -55,8 +57,10 @@
                         href="${ctx}/">Home</a></li>
                 <li class="${pagina.endsWith('/movies') ? 'active' : ''}"><a
                         href="${ctx}/movie/info/movies">Baza filmów</a></li>
-                <li class="${pagina.endsWith('/repertoire') ? 'active' : ''}"><a
-                        href="${pageContext.request.contextPath}/movie/repertoire">Repertuar</a></li>
+                <security:authorize access="hasAuthority('USER')">
+                <li class="${pagina.endsWith('/repertoireOverview') ? 'active' : ''}"><a
+                        href="${pageContext.request.contextPath}/showing/repertoireOverview">Repertuar</a></li>
+                </security:authorize>
                 <security:authorize access="hasAuthority('USER')">
                     <li class="nav-button"><a href="${ctx}/booking">Moje rezerwacje</a></li>
                 </security:authorize>
@@ -68,7 +72,7 @@
                 </li>
                 <sec:authorize access="!isAuthenticated()">
                     <li class="nav-button">
-                        <a class="${pagina.endsWith('/loginForm') ? 'active' : ''}" href="${ctx}/login/loginForm">
+                        <a class="${pagina.endsWith('/login') ? 'active' : ''}" href="${ctx}/login/login">
                             Zaloguj
                         </a>
                     </li>

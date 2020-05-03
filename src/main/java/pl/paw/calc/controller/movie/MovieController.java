@@ -1,33 +1,23 @@
 package pl.paw.calc.controller.movie;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import pl.paw.calc.entity.Movie;
-import pl.paw.calc.entity.Showing;
-import pl.paw.calc.model.ShowingDateModel;
 import pl.paw.calc.service.MovieService;
-import pl.paw.calc.service.ShowingService;
 
 import java.util.List;
 import java.util.logging.Logger;
 
-@Controller
+@RestController
+@RequiredArgsConstructor
 @RequestMapping("/movie")
 public class MovieController {
 
     private final MovieService movieService;
-    private final ShowingService showingService;
-
-    @Autowired
-    MovieController(MovieService movieService, ShowingService showingService) {
-        this.movieService = movieService;
-        this.showingService = showingService;
-    }
 
     private Logger logger = Logger.getLogger(getClass().getName());
 
@@ -52,16 +42,16 @@ public class MovieController {
         return modelAndView;
     }
 
-    @GetMapping("/repertoire")
-    public ModelAndView showReservationPage(@ModelAttribute("date") ShowingDateModel showingDateModel) {
-        ModelAndView modelAndView = new ModelAndView();
-        System.out.println(showingDateModel);
-        logger.info("Pobieram listę dostępnych seansów");
-        List<Showing> showings = (showingDateModel.getDateFrom() == null) ? showingService.getShowingsAfterCurrentDate()
-                : showingService.getShowingsForSpecificPeriod(showingDateModel);
-        modelAndView.addObject("showingDates", showingDateModel);
-        modelAndView.addObject("showings", showings);
-        modelAndView.setViewName("repertoire");
-        return modelAndView;
-    }
+//    @GetMapping("/repertoire")
+//    public ModelAndView showReservationPage(@ModelAttribute("date") ShowingDateModel showingDateModel) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        System.out.println(showingDateModel);
+//        logger.info("Pobieram listę dostępnych seansów");
+//        List<Showing> showings = (showingDateModel.getDateFrom() == null) ? showingService.getShowingsAfterCurrentDate()
+//                : showingService.getShowingsForSpecificPeriod(showingDateModel);
+//        modelAndView.addObject("showingDates", showingDateModel);
+//        modelAndView.addObject("showings", showings);
+//        modelAndView.setViewName("repertoire");
+//        return modelAndView;
+//    }
 }

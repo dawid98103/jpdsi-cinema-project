@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ShowingRepository extends JpaRepository<Showing, Integer> {
 
-    List<Showing> findAllByShowingDateAfter(LocalDateTime currentDateTime);
+    Showing findByShowingId(int showingId);
 
     List<Showing> findAllByShowingDateBetween(LocalDateTime startDate, LocalDateTime endDate);
 }
