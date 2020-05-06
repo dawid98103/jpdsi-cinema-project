@@ -62,7 +62,7 @@
                         href="${pageContext.request.contextPath}/showing/repertoireOverview">Repertuar</a></li>
                 </security:authorize>
                 <security:authorize access="hasAuthority('USER')">
-                    <li class="nav-button"><a href="${ctx}/booking">Moje rezerwacje</a></li>
+                    <li class="nav-button"><a class="${pagina.endsWith('/myReservationPage') ? 'active' : ''}" href="${ctx}/showing/myReservation">Moje rezerwacje</a></li>
                 </security:authorize>
                 <security:authorize access="hasAuthority('ADMIN')">
                     <li class="nav-button"><a href="${ctx}/admin/userManage"></a></li>
@@ -72,14 +72,14 @@
                 </li>
                 <sec:authorize access="!isAuthenticated()">
                     <li class="nav-button">
-                        <a class="${pagina.endsWith('/login') ? 'active' : ''}" href="${ctx}/login/login">
+                        <a class="${pagina.endsWith('/showLogin') ? 'active' : ''}" href="${ctx}/login">
                             Zaloguj
                         </a>
                     </li>
                 </sec:authorize>
                 <sec:authorize access="!isAuthenticated()">
                     <li class="nav-button">
-                        <a class="${pagina.endsWith('/registration') ? 'active' : ''}" href="${ctx}/login/registration">
+                        <a class="${pagina.endsWith('/registration') ? 'active' : ''}" href="${ctx}/registration">
                             Zarejestruj
                         </a>
                     </li>

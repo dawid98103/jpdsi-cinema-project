@@ -30,9 +30,6 @@ public class Ticket {
     @Column(name = "ticket_price")
     private BigDecimal price;
 
-    @OneToMany(mappedBy = "ticket")
-    private Set<Reservation> movieReservation;
-
     @Column(name = "active")
     private boolean active;
 }

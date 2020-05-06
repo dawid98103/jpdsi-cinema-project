@@ -20,7 +20,6 @@
                         <div class="form-group">
                             <label for="ticket-type">Typ:</label>
                             <select class="form-control" id="ticket-type">
-
                             </select>
                         </div>
                         <div class="form-group">

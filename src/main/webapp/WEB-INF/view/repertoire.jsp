@@ -12,7 +12,6 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@include file="navbar.jsp" %>
 <%@include file="modals/reserveModal.jsp"%>
-<security:authorize access="hasAuthority('USER')" var="isUser"/>
 <div class="container">
     <div class="panel-heading panel-margin">
         <div>
@@ -27,10 +26,10 @@
     </div>
 
     <table id="showingTable" class="table">
-        <thead>
+        <thead class="basic-thead text-center">
         <tr>
-            <th>Nazwa</th>
-            <th>Data</th>
+            <th class="interactional-theader">Nazwa</th>
+            <th class="interactional-theader">Data</th>
             <th>Operacje</th>
         </tr>
         </thead>
@@ -38,6 +37,11 @@
         </tbody>
     </table>
     <div class="alert alert-warning hidden" id="noShowingsError">Nie znaleziono seansów</div>
+
+    <div class="alert alert-success" id="success-alert">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Rezerwacja przebiegła pomyślnie!
+    </div>
 </div>
-<script src="/js/repertoire/customRepertoireScript.js"/>
+<script src="/js/showing/customRepertoireScript.js"/>
 <%@include file="footer.jsp" %>

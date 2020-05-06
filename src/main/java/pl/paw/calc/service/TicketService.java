@@ -20,6 +20,6 @@ public class TicketService {
     }
 
     public Ticket findTicketById(int ticketId){
-        return ticketRepository.findByTicketId(ticketId).orElseThrow(() -> new TicketNotFoundException(String.format("Nie znaleziono filmu o id: %d", ticketId)));
+        return ticketRepository.findByTicketId(ticketId).orElseThrow(() -> new TicketNotFoundException(String.format("Nie znaleziono biletu o id: %d", ticketId)));
     }
 }

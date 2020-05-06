@@ -29,6 +29,10 @@ public class MyUserDetailsService implements UserDetailsService {
         return buildUserForAuthentication(user, authorities);
     }
 
+    public User getCurrentUserId(String userName){
+        return userService.findUserByUserName(userName);
+    }
+
     private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {
         Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
         for (Role role : userRoles) {

@@ -1,8 +1,23 @@
 let showingsErrorAlert = $("#noShowingsError");
+let movieId = 0;
+let showingId = 0;
 
 $(document).ready(() => {
+    $("#success-alert").hide();
+    initializeModal();
     initializeDatePicker();
 })
+
+$("#reservationButton").click(() => {
+    let ticketQuantity = parseInt($("#ticket-quantity").val());
+    let ticketId = parseInt($("#ticket-type").val());
+    saveReservation({
+        "movieId": this.movieId,
+        "ticketId": ticketId,
+        "showingId": this.showingId,
+        "ticketQuantity": ticketQuantity
+    });
+});
 
 function getShowingsByDate() {
     let dateFrom = new Date($("#from").val()).getTime();
@@ -19,12 +34,10 @@ function getShowingsByDate() {
                 showing.movies.forEach(movie => {
                     let movieId = movie.movieId;
                     let showingId = showing.showingId;
-                    console.log(movieId);
-                    console.log(showingId);
                     trHTML += `
-                        <tr><td class="align-middle"><h4>${movie.movieName}</h4></td>
-                        <td><h4>${showing.showingDate}</h4></td>
-                        <td><a type="button" 
+                        <tr class="basic-trows"><td class="align-middle">${movie.movieName}</td>
+                        <td class="basic-tdata">${showing.showingDate}</td>
+                        <td class="class="basic-tdata""><a type="button" 
                         class="btn btn-success" 
                         id="showModal" 
                         data-toggle="modal" 
@@ -38,8 +51,6 @@ function getShowingsByDate() {
                 })
             })
             $("#showingTable tbody").append(trHTML);
-
-            initializeModal();
 
             (data.length === 0) ? showingsErrorAlert.removeClass("hidden") : showingsErrorAlert.addClass("hidden");
         },
@@ -64,26 +75,18 @@ function initializeModal() {
                     $(option).html(ticket.type);
                     $('#ticket-type').append(option);
                 })
+                console.log($("#ticket-type").val());
             },
             error: (reqeust) => {
                 alert(reqeust.responseJSON.message);
             }
         })
 
-        let movieId = $(e.relatedTarget).data('movie-id');
-        let showingId = $(e.relatedTarget).data('showing-id');
+        this.movieId = $(e.relatedTarget).data('movie-id');
+        this.showingId = $(e.relatedTarget).data('showing-id');
         let movieName = $(e.relatedTarget).data('movie-name');
         let showingDate = $(e.relatedTarget).data('movie-date');
-        let moviePhoto = $(e.relatedTarget).data('movie-photo')
-
-        $("#reservationButton").click(() => {
-            saveReservation({
-                "movieId": movieId,
-                "showingId": showingId,
-                "ticketQuantity": parseInt($("#ticket-quantity").val()),
-                "ticketId": parseInt($("#ticket-type").val())
-            });
-        })
+        let moviePhoto = $(e.relatedTarget).data('movie-photo');
 
         $(e.currentTarget).find('span.movie-name').text(movieName);
         $(e.currentTarget).find('span.movie-date').text(showingDate);
@@ -92,20 +95,27 @@ function initializeModal() {
 }
 
 function saveReservation(reservationModel) {
-    console.log(reservationModel);
     $.ajax({
         type: "POST",
-        url: '/reservation',
+        url: '/showing/reservation',
         dateType: "json",
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(reservationModel),
         success: (response) => {
             console.log(response);
+            $("#reservationModal").modal('hide');
+            $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
+                $("#success-alert").slideUp(500);
+            });
+            alert("Dodano rezerwację");
+        },
+        error: (xhr, status, error) => {
+            alert(xhr.responseJSON.message);
         }
     })
 }
 
-function initializeDatePicker(){
+function initializeDatePicker() {
     $(function () {
         let dateFormat = "dd/mm/yy",
             from = $("#from").datepicker({
@@ -137,21 +147,4 @@ function initializeDatePicker(){
         }
     });
 }
-
-// function sendReservationRequest(movieId, showingId) {
-//     console.log(movieId);
-//     console.log(showingId);
-//     $.ajax({
-//         type: "GET",
-//         url: "/showing/reservationPage",
-//         contentType: "application/json",
-//         // data: JSON.stringify({
-//         //     "movieId": movieId,
-//         //     "showingId": showingId
-//         // }),
-//         success: (data) => {
-//             $(".container").html(data);
-//         }
-//     });
-// }
 

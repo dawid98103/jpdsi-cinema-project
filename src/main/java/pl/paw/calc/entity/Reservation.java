@@ -1,8 +1,13 @@
 package pl.paw.calc.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.paw.calc.utils.serialization.CustomLocalDateTimeDeserializer;
+import pl.paw.calc.utils.serialization.CustomLocalDateTimeSerializer;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +17,7 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Table(name = "reservation")
 @Builder(toBuilder = true)
 public class Reservation implements Serializable {
@@ -22,7 +28,7 @@ public class Reservation implements Serializable {
     private int reservationId;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_login")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -37,8 +43,12 @@ public class Reservation implements Serializable {
     private BigDecimal amountToPay;
 
     @Column(name = "reservation_date_start")
+    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
+    @JsonSerialize(using = CustomLocalDateTimeSerializer.class)
     private LocalDateTime reservationDateStart;
 
     @Column(name = "reservation_date_end")
+    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
+    @JsonSerialize(using = CustomLocalDateTimeSerializer.class)
     private LocalDateTime reservationDateEnd;
 }

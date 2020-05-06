@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/login")
 public class LoginController {
 
     private final UserService userService;

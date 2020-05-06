@@ -8,11 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<html>
 <%@include file="navbar.jsp" %>
 <div>
     <div class="row">
-        <article class="col-xs-12 maincontent form-panel">
+        <article class="col-xs-12 maincontent form-panel top-margin">
             <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                 <div class="panel panel-default panel-movie">
                     <div class="row movie-info-row">
@@ -42,4 +41,3 @@
     </div>
 </div>
 <%@include file="footer.jsp" %>
-</html>

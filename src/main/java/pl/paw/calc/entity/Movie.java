@@ -42,6 +42,7 @@ public class Movie {
     @JoinColumn(name = "movie_genre_id", nullable = true)
     private MovieGenre movieGenre;
 
-    @OneToMany(mappedBy = "movie")
-    private Set<Reservation> movieReservation;
+    //TODO rekurencja
+//    @OneToMany(mappedBy = "movie")
+//    private Set<Reservation> movieReservation;
 }

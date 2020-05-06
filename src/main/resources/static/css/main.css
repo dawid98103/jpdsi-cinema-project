@@ -9,7 +9,7 @@ hr {
     background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }
 
-form{
+form {
     color: white;
 }
 
@@ -81,6 +81,15 @@ form{
     background: transparent;
 }
 
+.basic-thead{
+    background-color: black;
+    text-align: center;
+}
+
+.basic-trows{
+    background-color: #262626;
+}
+
 #showingDates {
     margin: 0px;
     padding: 15px;
@@ -92,22 +101,29 @@ form{
     border: 1px solid rgba(0, 0, 0, .2);
 }
 
-#showingTable thead {
-    background-color: black;
+#showingTable > thead > tr > th{
     text-align: center;
 }
 
-#showingTable > tbody > tr {
-    background-color: #262626;
-}
-
-#showingTable > tbody > tr > td {
+#showingTable td{
+    font-size: medium;
     vertical-align: middle;
     text-align: center;
 }
 
-#showingTable > thead > tr > th {
+#myReservationTable {
+    color: white;
+    margin-top: 15px;
+    border: 1px solid rgba(0, 0, 0, .2);
+}
+
+#myReservationTable td{
+    vertical-align: middle;
     text-align: center;
+}
+
+#myReservationTable > th > tr > th {
+    text-align: center; !important;
 }
 
 @media (max-width: 767px) {
@@ -131,6 +147,10 @@ form{
     -moz-transition: all 0.4s ease-out;
     -o-transition: all 0.4s ease-out;
     transition: all 0.4s ease-out;
+}
+
+.interactional-theader:hover {
+    cursor: pointer;
 }
 
 /* Highlights (in jumbotron in most cases) */
@@ -285,7 +305,7 @@ img.pull-left {
 /*}*/
 .panel-price-list {
     margin-top: 150px;
-    color:white;
+    color: white;
     border: 1px solid white;
 }
 
@@ -481,7 +501,7 @@ div.login-bottom-row > div {
 }
 
 /*signUp styles*/
-.my-login-form{
+.my-login-form {
     margin: 0px auto 40px auto;
     display: flex;
     flex-wrap: wrap;
@@ -491,14 +511,14 @@ div.login-bottom-row > div {
     border: 2px solid rgba(62, 62, 62, 0.5);
 }
 
-.login-form{
+.login-form {
     margin: auto;
     width: 60%;
 }
 
-.send-button{
+.send-button {
     background: #54C7C3;
-    width:100%;
+    width: 100%;
     font-weight: 600;
     color: #ffffff;
     padding: 8px 25px;
@@ -510,28 +530,32 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-.my-input{
+.my-input {
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     cursor: text;
     padding: 8px 10px;
     transition: border .1s linear;
 }
-.header-title{
+
+.header-title {
     color: white;
     margin-bottom: 1em;
 }
-h1{
+
+h1 {
     font-size: 31px;
     line-height: 40px;
     font-weight: 600;
-    color:#4c5357;
+    color: #4c5357;
 }
-h2{
+
+h2 {
     color: #5e8396;
     font-size: 21px;
     line-height: 32px;
     font-weight: 400;
 }
+
 .login-or {
     position: relative;
     color: #aaa;
@@ -540,6 +564,7 @@ h2{
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
 .span-or {
     display: block;
     position: absolute;
@@ -550,6 +575,7 @@ h2{
     width: 50px;
     text-align: center;
 }
+
 .hr-or {
     height: 1px;
     margin-top: 0px !important;

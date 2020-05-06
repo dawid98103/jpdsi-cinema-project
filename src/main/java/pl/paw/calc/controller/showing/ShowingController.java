@@ -3,15 +3,10 @@ package pl.paw.calc.controller.showing;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 import pl.paw.calc.model.request.AddReservationRequest;
 import pl.paw.calc.model.response.MovieShowingResponseModel;
-import pl.paw.calc.service.MovieService;
 import pl.paw.calc.service.ReservationService;
 import pl.paw.calc.service.ShowingService;
 
@@ -41,8 +36,22 @@ public class ShowingController {
         return new ModelAndView("repertoire");
     }
 
+    @GetMapping("/myReservation")
+    public ModelAndView myReservation(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("reservations", reservationService.findAllReservationsByCurrentUser());
+        modelAndView.setViewName("myReservationPage");
+        return modelAndView;
+    }
+
+    @PostMapping("/reservation")
+    private ResponseEntity<?> saveReservation(@RequestBody AddReservationRequest addReservationRequest){
+        reservationService.saveReservation(addReservationRequest);
+        return new ResponseEntity<>("Success", HttpStatus.OK);
+    }
+
     @PostMapping("/reservationPage")
     public ModelAndView showReservationPage() {
-        return new ModelAndView("reservationPage");
+        return new ModelAndView("myReservationPage");
     }
 }
