@@ -23,6 +23,6 @@ public class MovieGenre {
     @Column(name = "name")
     private String movieGenreName;
 
-    @OneToMany(mappedBy = "movieGenre")
+    @OneToMany(mappedBy = "movieGenre", fetch = FetchType.LAZY)
     private Set<Movie> movies;
 }
