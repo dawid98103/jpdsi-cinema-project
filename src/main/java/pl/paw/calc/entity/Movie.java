@@ -39,7 +39,7 @@ public class Movie {
     @Column(name = "movie_director")
     private String movieDirector;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_genre_id", nullable = true)
     private MovieGenre movieGenre;
 

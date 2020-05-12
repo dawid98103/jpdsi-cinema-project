@@ -7,12 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import pl.paw.calc.entity.Movie;
-import pl.paw.calc.entity.Ticket;
 import pl.paw.calc.service.MovieService;
-import pl.paw.calc.service.TicketService;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,16 +17,11 @@ import java.util.logging.Logger;
 public class MovieController {
 
     private final MovieService movieService;
-    private final TicketService ticketService;
-
-    private Logger logger = Logger.getLogger(getClass().getName());
 
     @GetMapping("/info/movies")
     public ModelAndView getAllMovies() {
         ModelAndView modelAndView = new ModelAndView();
-        logger.info("Pobieram listę filmów z bazy danych");
         List<Movie> allMovies = movieService.findAll();
-        logger.info(String.format("Pobrano %d filmów", allMovies.size()));
         modelAndView.addObject("movies", allMovies);
         modelAndView.setViewName("movieBase");
         return modelAndView;
@@ -37,7 +29,6 @@ public class MovieController {
 
     @GetMapping("/info/{movieId}")
     public ModelAndView showMovieInfo(@PathVariable int movieId) {
-        logger.info("Pokazuję informacje o filmie id:" + movieId);
         ModelAndView modelAndView = new ModelAndView();
         Movie retrievedMovie = movieService.findMovieById(movieId);
         modelAndView.addObject("movie", retrievedMovie);
