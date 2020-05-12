@@ -10,38 +10,6 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Projekt zaliczeniowy pwai">
-    <meta name="author" content="Sergey Pozhilov (GetTemplate.com)">
-
-    <title>Cinema City</title>
-
-    <link rel="shortcut icon" href="/images/icons8-movie-64.png">
-
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
-
-    <!-- Custom styles for our template -->
-    <link rel="stylesheet" href="/css/bootstrap-theme.css" media="screen">
-    <link rel="stylesheet" href="/css/main.css">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="/js/html5shiv.js"></script>
-    <script src="/js/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body class="home">
 <div class="navbar navbar-inverse navbar-fixed-top headroom">
     <div class="container">
         <div class="navbar-header">
@@ -58,11 +26,12 @@
                 <li class="${pagina.endsWith('/movies') ? 'active' : ''}"><a
                         href="${ctx}/movie/info/movies">Baza filmów</a></li>
                 <security:authorize access="hasAuthority('USER')">
-                <li class="${pagina.endsWith('/repertoireOverview') ? 'active' : ''}"><a
-                        href="${pageContext.request.contextPath}/showing/repertoireOverview">Repertuar</a></li>
+                    <li class="${pagina.endsWith('/repertoireOverview') ? 'active' : ''}"><a
+                            href="${pageContext.request.contextPath}/showing/repertoireOverview">Repertuar</a></li>
                 </security:authorize>
                 <security:authorize access="hasAuthority('USER')">
-                    <li class="nav-button"><a class="${pagina.endsWith('/myReservationPage') ? 'active' : ''}" href="${ctx}/showing/myReservation">Moje rezerwacje</a></li>
+                    <li class="nav-button"><a class="${pagina.endsWith('/myReservationPage') ? 'active' : ''}"
+                                              href="${ctx}/showing/myReservation">Moje rezerwacje</a></li>
                 </security:authorize>
                 <security:authorize access="hasAuthority('ADMIN')">
                     <li class="nav-button"><a href="${ctx}/admin/userManage"></a></li>
@@ -72,14 +41,14 @@
                 </li>
                 <sec:authorize access="!isAuthenticated()">
                     <li class="nav-button">
-                        <a class="${pagina.endsWith('/showLogin') ? 'active' : ''}" href="${ctx}/login">
+                        <a class="${pagina.endsWith('/showLogin') ? 'active' : ''}" href="${ctx}/auth/login">
                             Zaloguj
                         </a>
                     </li>
                 </sec:authorize>
                 <sec:authorize access="!isAuthenticated()">
                     <li class="nav-button">
-                        <a class="${pagina.endsWith('/registration') ? 'active' : ''}" href="${ctx}/registration">
+                        <a class="${pagina.endsWith('/registration') ? 'active' : ''}" href="${ctx}/auth/registration">
                             Zarejestruj
                         </a>
                     </li>

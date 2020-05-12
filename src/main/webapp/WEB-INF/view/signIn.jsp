@@ -10,7 +10,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@include file="navbar.jsp" %>
 
 <div class="container top-margin">
     <div class="my-login-form">
@@ -47,5 +46,3 @@
         </div>
     </div>
 </div>
-<!-- /container -->
-<%@include file="footer.jsp" %>

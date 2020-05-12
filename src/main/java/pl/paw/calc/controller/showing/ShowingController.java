@@ -26,7 +26,7 @@ public class ShowingController {
     }
 
     @PostMapping("/repertoire")
-    public ResponseEntity<?> processReservation(@RequestBody AddReservationRequest addReservationRequest){
+    public ResponseEntity<?> processReservation(@RequestBody AddReservationRequest addReservationRequest) {
         reservationService.saveReservation(addReservationRequest);
         return new ResponseEntity<>("Operacja wykonana pomyślnie!", HttpStatus.OK);
     }
@@ -37,7 +37,7 @@ public class ShowingController {
     }
 
     @GetMapping("/myReservation")
-    public ModelAndView myReservation(){
+    public ModelAndView myReservation() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("reservations", reservationService.findAllReservationsByCurrentUser());
         modelAndView.setViewName("myReservationPage");
@@ -45,7 +45,7 @@ public class ShowingController {
     }
 
     @PostMapping("/reservation")
-    private ResponseEntity<?> saveReservation(@RequestBody AddReservationRequest addReservationRequest){
+    private ResponseEntity<?> saveReservation(@RequestBody AddReservationRequest addReservationRequest) {
         reservationService.saveReservation(addReservationRequest);
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
@@ -53,5 +53,11 @@ public class ShowingController {
     @PostMapping("/reservationPage")
     public ModelAndView showReservationPage() {
         return new ModelAndView("myReservationPage");
+    }
+
+    @DeleteMapping("/reservation/{id}")
+    private ResponseEntity<?> deleteReservation(@PathVariable int id) {
+        reservationService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

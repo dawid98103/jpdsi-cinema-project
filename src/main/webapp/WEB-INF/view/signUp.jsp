@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@include file="navbar.jsp" %>
 <div class="container top-margin">
     <div class="my-login-form">
         <div class="text-center">
@@ -20,7 +19,7 @@
         </div>
         <div class="mx-auto">
             <div class="myform form ">
-                <form:form method="post" action="${pageContext.request.contextPath}/login/processRegistrationForm"
+                <form:form method="post" action="${pageContext.request.contextPath}/auth/processRegistrationForm"
                            modelAttribute="user" class="login-form">
                     <spring:bind path="userName">
                         <div class="form-group ${status.error ? 'has-error' : ''}">
@@ -90,4 +89,3 @@
         </div>
     </div>
 </div>
-<%@include file="footer.jsp" %>

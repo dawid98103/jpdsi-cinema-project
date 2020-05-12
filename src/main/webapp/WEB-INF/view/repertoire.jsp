@@ -10,8 +10,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-<%@include file="navbar.jsp" %>
-<%@include file="modals/reserveModal.jsp"%>
+<%@include file="modals/reserveModal.jsp" %>
 <div class="container">
     <div class="panel-heading panel-margin">
         <div>
@@ -44,4 +43,3 @@
     </div>
 </div>
 <script src="/js/showing/customRepertoireScript.js"/>
-<%@include file="footer.jsp" %>

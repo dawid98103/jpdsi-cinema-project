@@ -8,8 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<html>
-<%@include file="navbar.jsp" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <div class="container">
     <div class="panel panel-price-list">
         <table class="table table-striped" id="price-list-table">
@@ -35,5 +34,4 @@
         </table>
     </div>
 </div>
-<%@include file="footer.jsp" %>
-</html>
+

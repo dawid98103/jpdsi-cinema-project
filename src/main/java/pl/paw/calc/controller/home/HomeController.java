@@ -19,6 +19,7 @@ public class HomeController {
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
         List<Movie> movies = movieService.findAll();
+        modelAndView.addObject("text", "text");
         modelAndView.addObject("movieList", movies);
         modelAndView.setViewName("home");
         return modelAndView;

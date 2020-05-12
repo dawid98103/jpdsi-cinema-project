@@ -18,7 +18,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
-                <button type="button" class="btn btn-success">Potwierdź</button>
+                <button type="button" class="btn btn-success" id="confirmButton">Potwierdź</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

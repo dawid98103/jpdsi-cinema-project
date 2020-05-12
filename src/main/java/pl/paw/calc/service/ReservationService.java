@@ -27,6 +27,10 @@ public class ReservationService {
         return reservationRepository.findAllByUser(retrievedUser);
     }
 
+    public void deleteById(int reservationId){
+        reservationRepository.deleteById(reservationId);
+    }
+
     //TODO Dodać wpisywanie po ID zamiast obiektów
     public void saveReservation(AddReservationRequest reservationToAdd) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

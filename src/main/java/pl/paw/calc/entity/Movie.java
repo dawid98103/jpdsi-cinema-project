@@ -23,6 +23,7 @@ public class Movie {
     @Column(name = "movie_name")
     private String movieName;
 
+    @Size(max = 2056, message = "Opis nie może być dłuższy niż {max} znaków")
     @Column(name = "movie_description")
     private String movieDescription;
 

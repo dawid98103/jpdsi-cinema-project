@@ -1,3 +1,7 @@
+$(document).ready(() => {
+    initializeModal();
+})
+
 function sortTableByName(n) {
     let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("myReservationTable");
@@ -175,4 +179,28 @@ function sortTableByNumber(n){
             }
         }
     }
+}
+
+function initializeModal() {
+    reservationId = ($(this).data('id'));
+    console.log(reservationId);
+    $("#confirmButton").on('click', () => {
+        deleteReservation(reservationId);
+    })
+}
+
+function deleteReservation(reservationId) {
+    $.ajax({
+        type: "DELETE",
+        url: `/showing/reservation/${reservationId}` ,
+        dateType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: (data, status) => {
+            console.log(data);
+            alert("Rezerwacja Pomyślnie usunięta");
+        },
+        error: (reqeust) => {
+            alert(reqeust.responseJSON.message);
+        }
+    })
 }
