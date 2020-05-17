@@ -19,7 +19,7 @@
         </div>
         <div class="mx-auto">
             <div class="myform form ">
-                <form:form method="post" action="${pageContext.request.contextPath}/auth/processRegistrationForm"
+                <form:form method="post" action="${pageContext.request.contextPath}/login/processRegistrationForm"
                            modelAttribute="user" class="login-form">
                     <spring:bind path="userName">
                         <div class="form-group ${status.error ? 'has-error' : ''}">

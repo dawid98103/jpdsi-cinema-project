@@ -1,52 +1,76 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <definition name="home" template="/WEB-INF/view/layouts/defaultHome.jsp">
+
+    <definition name="base" template="/WEB-INF/view/layouts/defaultHome.jsp">
         <put-attribute name="navbar" value="/WEB-INF/tiles/navbar.jsp"/>
+        <put-attribute name="title" value=""></put-attribute>
+        <put-attribute name="body" value=""></put-attribute>
+        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
+        <put-list-attribute name="stylesheets">
+            <add-attribute value="/static/css/bootstrap.min.css"/>
+            <add-attribute value="/static/css/font-awesome.min.css"/>
+            <add-attribute value="/static/css/bootstrap-theme.css"/>
+            <add-attribute value="/static/css/main.css"/>
+            <!--            <add-attribute value="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>-->
+            <!--            <add-attribute value="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>-->
+            <!--            <add-attribute value="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>-->
+        </put-list-attribute>
+        <put-list-attribute name="javascripts">
+            <add-attribute value="https://code.jquery.com/jquery-1.12.4.js"/>
+            <add-attribute value="https://code.jquery.com/ui/1.12.1/jquery-ui.js"/>
+            <add-attribute value="/static/js/html5shiv.js"/>
+            <add-attribute value="/static/js/respond.min.js"/>
+        </put-list-attribute>
+    </definition>
+
+    <definition name="home" extends="base">
+        <put-attribute name="title" value="Home"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/view/home.jsp"/>
-        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
     </definition>
 
-    <definition name="movieBase" template="/WEB-INF/view/layouts/defaultHome.jsp">
-        <put-attribute name="navbar" value="/WEB-INF/tiles/navbar.jsp"/>
+    <definition name="movieBase" extends="base">
+        <put-attribute name="title" value="Baza filmów"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/view/movieBase.jsp"/>
-        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
     </definition>
 
-    <definition name="movieInfo" template="/WEB-INF/view/layouts/defaultHome.jsp">
-        <put-attribute name="navbar" value="/WEB-INF/tiles/navbar.jsp"/>
+    <definition name="movieInfo" extends="base">
+        <put-attribute name="title" value="Info"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/view/movieInfo.jsp"/>
-        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
     </definition>
 
-    <definition name="myReservationPage" template="/WEB-INF/view/layouts/defaultHome.jsp">
-        <put-attribute name="navbar" value="/WEB-INF/tiles/navbar.jsp"/>
+    <definition name="myReservationPage" extends="base">
+        <put-attribute name="title" value="Moje rezerwacje"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/view/myReservationPage.jsp"/>
-        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
+        <put-list-attribute name="javascripts" inherit="true">
+            <add-attribute value="/static/js/showing/customReservationScript.js"></add-attribute>
+        </put-list-attribute>
     </definition>
 
-    <definition name="priceList" template="/WEB-INF/view/layouts/defaultHome.jsp">
-        <put-attribute name="navbar" value="/WEB-INF/tiles/navbar.jsp"/>
+    <definition name="priceList" extends="base">
+        <put-attribute name="title" value="Cennik"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/view/priceList.jsp"/>
-        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
     </definition>
 
-    <definition name="repertoire" template="/WEB-INF/view/layouts/defaultHome.jsp">
-        <put-attribute name="navbar" value="/WEB-INF/tiles/navbar.jsp"/>
+    <definition name="repertoire" extends="base">
+        <put-attribute name="title" value="Repertuar"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/view/repertoire.jsp"/>
-        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
+        <put-list-attribute name="stylesheets" inherit="true">
+            <add-attribute value="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"></add-attribute>
+        </put-list-attribute>
+        <put-list-attribute name="javascripts" inherit="true">
+            <add-attribute value="/static/js/showing/customRepertoireScript.js"></add-attribute>
+        </put-list-attribute>
     </definition>
 
-    <definition name="signIn" template="/WEB-INF/view/layouts/defaultHome.jsp">
-        <put-attribute name="navbar" value="/WEB-INF/tiles/navbar.jsp"/>
+    <definition name="signIn" extends="base">
+        <put-attribute name="title" value="Zaloguj"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/view/signIn.jsp"/>
-        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
     </definition>
 
-    <definition name="signUp" template="/WEB-INF/view/layouts/defaultHome.jsp">
-        <put-attribute name="navbar" value="/WEB-INF/tiles/navbar.jsp"/>
+    <definition name="signUp" extends="base">
+        <put-attribute name="title" value="Zarejestruj"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/view/signUp.jsp"/>
-        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
     </definition>
 </tiles-definitions>

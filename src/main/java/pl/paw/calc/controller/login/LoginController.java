@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import pl.paw.calc.entity.User;
 import pl.paw.calc.service.UserService;
@@ -15,13 +16,13 @@ import java.util.logging.Logger;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/auth")
+@RequestMapping("/login")
 public class LoginController {
 
     private final UserService userService;
     private Logger logger = Logger.getLogger(getClass().getName());
 
-    @GetMapping("/login")
+    @GetMapping("/loginForm")
     public ModelAndView showLoginForm() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("signIn");

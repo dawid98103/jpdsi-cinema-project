@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.Set;
 
 @Entity
 @Data
@@ -39,11 +38,11 @@ public class Movie {
     @Column(name = "movie_director")
     private String movieDirector;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movie_genre_id", nullable = true)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "movie_genre_id")
     private MovieGenre movieGenre;
 
-    //TODO rekurencja
+//    //TODO rekurencja
 //    @OneToMany(mappedBy = "movie")
 //    private Set<Reservation> movieReservation;
 }

@@ -41,8 +41,7 @@
             </table>
         </c:when>
         <c:otherwise>
-            <div class="alert alert-warning hidden" id="noShowingsError">Nie masz żadnej rezerwacji</div>
+            <div class="alert alert-warning" id="noShowingsError">Nie masz żadnej rezerwacji</div>
         </c:otherwise>
     </c:choose>
 </div>
-<script src="/js/showing/customReservationScript.js"/>

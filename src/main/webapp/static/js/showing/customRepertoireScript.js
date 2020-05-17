@@ -1,12 +1,25 @@
 let showingsErrorAlert = $("#noShowingsError");
-let movieId = 0;
-let showingId = 0;
+
+Date.prototype.addDays = function (days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+}
 
 $(document).ready(() => {
     $("#success-alert").hide();
+    getShowingsByDate(new Date(), new Date().addDays(7));
     initializeModal();
     initializeDatePicker();
 })
+
+let datePickerFrom = $('#from');
+datePickerFrom.datepicker();
+datePickerFrom.datepicker('setDate', new Date());
+
+let datePickerTo = $('#to');
+datePickerTo.datepicker();
+datePickerTo.datepicker('setDate', new Date().addDays(7));
 
 $("#reservationButton").click(() => {
     let ticketQuantity = parseInt($("#ticket-quantity").val());
@@ -19,9 +32,13 @@ $("#reservationButton").click(() => {
     });
 });
 
-function getShowingsByDate() {
-    let dateFrom = new Date($("#from").val()).getTime();
-    let dateTo = new Date($("#to").val()).getTime();
+function getShowingsByDate(startDate, endDate) {
+    let dateFrom = (startDate != null) ? startDate.getTime() : new Date($("#from").val()).getTime();
+    let dateTo = (endDate != null) ? endDate.getTime() : new Date($("#to").val()).getTime();
+
+    console.log(dateFrom);
+    console.log(dateTo);
+
     $.ajax({
         type: "GET",
         url: `/showing/repertoire/${dateFrom}/${dateTo}`,

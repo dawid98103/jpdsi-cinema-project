@@ -25,30 +25,30 @@
                         href="${ctx}/">Home</a></li>
                 <li class="${pagina.endsWith('/movies') ? 'active' : ''}"><a
                         href="${ctx}/movie/info/movies">Baza filmów</a></li>
-                <security:authorize access="hasAuthority('USER')">
+                <security:authorize access="hasAnyAuthority('USER','ADMIN')">
                     <li class="${pagina.endsWith('/repertoireOverview') ? 'active' : ''}"><a
                             href="${pageContext.request.contextPath}/showing/repertoireOverview">Repertuar</a></li>
                 </security:authorize>
-                <security:authorize access="hasAuthority('USER')">
+                <security:authorize access="hasAnyAuthority('USER','ADMIN')">
                     <li class="nav-button"><a class="${pagina.endsWith('/myReservationPage') ? 'active' : ''}"
                                               href="${ctx}/showing/myReservation">Moje rezerwacje</a></li>
                 </security:authorize>
                 <security:authorize access="hasAuthority('ADMIN')">
-                    <li class="nav-button"><a href="${ctx}/admin/userManage"></a></li>
+                    <li class="nav-button"><a href="${ctx}/admin/userManage">Zarządzaj</a></li>
                 </security:authorize>
                 <li class="${pagina.endsWith('/showPriceList') ? 'active' : ''}"><a
                         href="${ctx}/priceList/showPriceList">Cennik</a>
                 </li>
                 <sec:authorize access="!isAuthenticated()">
                     <li class="nav-button">
-                        <a class="${pagina.endsWith('/showLogin') ? 'active' : ''}" href="${ctx}/auth/login">
+                        <a class="${pagina.endsWith('/showLogin') ? 'active' : ''}" href="${ctx}/login/loginForm">
                             Zaloguj
                         </a>
                     </li>
                 </sec:authorize>
                 <sec:authorize access="!isAuthenticated()">
                     <li class="nav-button">
-                        <a class="${pagina.endsWith('/registration') ? 'active' : ''}" href="${ctx}/auth/registration">
+                        <a class="${pagina.endsWith('/registration') ? 'active' : ''}" href="${ctx}/login/registration">
                             Zarejestruj
                         </a>
                     </li>

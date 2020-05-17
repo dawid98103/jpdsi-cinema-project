@@ -42,4 +42,3 @@
         Rezerwacja przebiegła pomyślnie!
     </div>
 </div>
-<script src="/js/showing/customRepertoireScript.js"/>
