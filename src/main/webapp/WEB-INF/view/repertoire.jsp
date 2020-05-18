@@ -37,8 +37,5 @@
     </table>
     <div class="alert alert-warning hidden" id="noShowingsError">Nie znaleziono seansów</div>
 
-    <div class="alert alert-success" id="success-alert">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        Rezerwacja przebiegła pomyślnie!
-    </div>
+    <div class="notifications top-right"></div>
 </div>

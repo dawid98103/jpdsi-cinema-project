@@ -29,7 +29,7 @@
                                 <img src="${movie.movieSmallUrl}" alt="${movie.movieDescription}"/>
                             </a>
                             <div class="panel movie-info-panel">
-                                <div>Gatunek: ${movie.movieGenre.movieGenreName}</div>
+                                <div>Gatunek: ${movie.movieGenre.name()}</div>
                                 <hr style="margin:10px">
                                 <div>Reżyser: ${movie.movieDirector}</div>
                             </div>

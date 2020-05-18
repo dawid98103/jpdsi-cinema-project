@@ -13,15 +13,18 @@
             <add-attribute value="/static/css/font-awesome.min.css"/>
             <add-attribute value="/static/css/bootstrap-theme.css"/>
             <add-attribute value="/static/css/main.css"/>
-            <!--            <add-attribute value="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>-->
-            <!--            <add-attribute value="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>-->
-            <!--            <add-attribute value="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>-->
         </put-list-attribute>
         <put-list-attribute name="javascripts">
-            <add-attribute value="https://code.jquery.com/jquery-1.12.4.js"/>
-            <add-attribute value="https://code.jquery.com/ui/1.12.1/jquery-ui.js"/>
+            <add-attribute value="https://code.jquery.com/jquery-1.9.1.min.js"/>
+            <add-attribute value="http://code.jquery.com/jquery-migrate-1.2.1.js"/>
             <add-attribute value="/static/js/html5shiv.js"/>
             <add-attribute value="/static/js/respond.min.js"/>
+            <add-attribute value="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/>
+            <add-attribute value="/static/js/headroom.min.js"/>
+            <add-attribute value="/static/js/jQuery.headroom.min.js"/>
+            <add-attribute value="/static/js/template.js"/>
+            <add-attribute value="https://kit.fontawesome.com/246d3ce75a.js"/>
+            <add-attribute value="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"/>
         </put-list-attribute>
     </definition>
 
@@ -36,7 +39,7 @@
     </definition>
 
     <definition name="movieInfo" extends="base">
-        <put-attribute name="title" value="Info"></put-attribute>
+        <put-attribute name="title" value="Film"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/view/movieInfo.jsp"/>
     </definition>
 
@@ -57,10 +60,14 @@
         <put-attribute name="title" value="Repertuar"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/view/repertoire.jsp"/>
         <put-list-attribute name="stylesheets" inherit="true">
-            <add-attribute value="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"></add-attribute>
+            <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.min.css"/>
+            <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/styles/alert-bangtidy.min.css"/>
+            <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/styles/alert-blackgloss.min.css"/>
+            <add-attribute value="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
         </put-list-attribute>
         <put-list-attribute name="javascripts" inherit="true">
-            <add-attribute value="/static/js/showing/customRepertoireScript.js"></add-attribute>
+            <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.min.js"/>
+            <add-attribute value="/static/js/showing/customRepertoireScript.js"/>
         </put-list-attribute>
     </definition>
 

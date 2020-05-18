@@ -1,4 +1,6 @@
 let showingsErrorAlert = $("#noShowingsError");
+let movieId = 0;
+let showingId = 0;
 
 Date.prototype.addDays = function (days) {
     var date = new Date(this.valueOf());
@@ -6,31 +8,40 @@ Date.prototype.addDays = function (days) {
     return date;
 }
 
+$("#success-alert").hide();
+
 $(document).ready(() => {
-    $("#success-alert").hide();
-    getShowingsByDate(new Date(), new Date().addDays(7));
     initializeModal();
+    initializeButtons();
+    getShowingsByDate(new Date(), new Date().addDays(7));
     initializeDatePicker();
 })
 
-let datePickerFrom = $('#from');
-datePickerFrom.datepicker();
-datePickerFrom.datepicker('setDate', new Date());
+(function setDatePickerDates(){
+    let datePickerFrom = $('#from');
+    datePickerFrom.datepicker();
+    datePickerFrom.datepicker('setDate', new Date());
 
-let datePickerTo = $('#to');
-datePickerTo.datepicker();
-datePickerTo.datepicker('setDate', new Date().addDays(7));
+    let datePickerTo = $('#to');
+    datePickerTo.datepicker();
+    datePickerTo.datepicker('setDate', new Date().addDays(7));
+}());
 
-$("#reservationButton").click(() => {
-    let ticketQuantity = parseInt($("#ticket-quantity").val());
-    let ticketId = parseInt($("#ticket-type").val());
-    saveReservation({
-        "movieId": this.movieId,
-        "ticketId": ticketId,
-        "showingId": this.showingId,
-        "ticketQuantity": ticketQuantity
+function initializeButtons() {
+    let test = $(".reservationButton");
+    console.log(test);
+    $("#reservationButton").click(() => {
+        console.log("tutaj");
+        let ticketQuantity = parseInt($("#ticket-quantity").val());
+        let ticketId = parseInt($("#ticket-type").val());
+        saveReservation({
+            "movieId": this.movieId,
+            "ticketId": ticketId,
+            "showingId": this.showingId,
+            "ticketQuantity": ticketQuantity
+        });
     });
-});
+}
 
 function getShowingsByDate(startDate, endDate) {
     let dateFrom = (startDate != null) ? startDate.getTime() : new Date($("#from").val()).getTime();
@@ -87,7 +98,10 @@ function initializeModal() {
             dateType: "json",
             contentType: "application/json; charset=utf-8",
             success: (data, status) => {
+                console.log("success");
+                console.log(data);
                 data.forEach(ticket => {
+                    console.log(ticket);
                     let option = new Option(ticket.type, ticket.ticketId)
                     $(option).html(ticket.type);
                     $('#ticket-type').append(option);
@@ -112,6 +126,7 @@ function initializeModal() {
 }
 
 function saveReservation(reservationModel) {
+    console.log("tutej");
     $.ajax({
         type: "POST",
         url: '/showing/reservation',
@@ -119,12 +134,8 @@ function saveReservation(reservationModel) {
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(reservationModel),
         success: (response) => {
-            console.log(response);
+            $('.top-right').notify({message: {text: 'Rezerwacja dodana pomyślnie!'}}).show();
             $("#reservationModal").modal('hide');
-            $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
-                $("#success-alert").slideUp(500);
-            });
-            alert("Dodano rezerwację");
         },
         error: (xhr, status, error) => {
             alert(xhr.responseJSON.message);
@@ -137,8 +148,8 @@ function initializeDatePicker() {
         let dateFormat = "dd/mm/yy",
             from = $("#from").datepicker({
                 defaultDate: new Date(),
+                dateFormat: 'yy-mm-dd',
                 changeMonth: true,
-                value: "03/05/2020",
                 numberOfMonths: 1,
             })
                 .on("change", function () {
@@ -146,6 +157,7 @@ function initializeDatePicker() {
                 }),
             to = $("#to").datepicker({
                 defaultDate: 7,
+                dateFormat: 'yy-mm-dd',
                 changeMonth: true,
                 numberOfMonths: 1,
             })

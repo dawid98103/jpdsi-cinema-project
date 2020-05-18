@@ -1,6 +1,7 @@
 package pl.paw.calc.entity;
 
 import lombok.*;
+import pl.paw.calc.utils.enums.MovieGenreEnum;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -38,9 +39,8 @@ public class Movie {
     @Column(name = "movie_director")
     private String movieDirector;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "movie_genre_id")
-    private MovieGenre movieGenre;
+    @Column(name = "movie_genre")
+    private MovieGenreEnum movieGenre;
 
 //    //TODO rekurencja
 //    @OneToMany(mappedBy = "movie")

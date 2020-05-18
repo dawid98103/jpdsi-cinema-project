@@ -6,11 +6,7 @@ function sortTableByName(n) {
     let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("myReservationTable");
     switching = true;
-    console.log(table);
-    // Set the sorting direction to ascending:
     dir = "asc";
-    /* Make a loop that will continue until
-    no switching has been done: */
     while (switching) {
         // Start by saying: no switching is done:
         switching = false;
@@ -26,6 +22,9 @@ function sortTableByName(n) {
             y = rows[i + 1].getElementsByTagName("TD")[n];
             /* Check if the two rows should switch place,
             based on the direction, asc or desc: */
+            console.log("tutej");
+            console.log(x.innerHTML);
+            console.log(typeof x.innerHTML);
             if (dir == "asc") {
                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                     // If so, mark as a switch and break the loop:
@@ -41,15 +40,10 @@ function sortTableByName(n) {
             }
         }
         if (shouldSwitch) {
-            /* If a switch has been marked, make the switch
-            and mark that a switch has been done: */
             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
             switching = true;
-            // Each time a switch is done, increase this count by 1:
             switchcount ++;
         } else {
-            /* If no switching has been done AND the direction is "asc",
-            set the direction to "desc" and run the while loop again. */
             if (switchcount == 0 && dir == "asc") {
                 dir = "desc";
                 switching = true;
@@ -82,6 +76,7 @@ function sortTableByDate(n) {
             y = rows[i + 1].getElementsByTagName("TD")[n];
             /* Check if the two rows should switch place,
             based on the direction, asc or desc: */
+            console.log(typeof x.innerHTML);
             if (dir == "asc") {
                 if (new Date(x.innerHTML) > new Date(y.innerHTML)) {
                     // If so, mark as a switch and break the loop:
@@ -138,24 +133,15 @@ function sortTableByNumber(n){
             y = rows[i + 1].getElementsByTagName("TD")[n];
             /* Check if the two rows should switch place,
             based on the direction, asc or desc: */
-            console.log(n);
-            console.log(dir);
+            console.log(typeof x.innerHTML);
             if (dir === "asc") {
-                console.log(Number.parseFloat(x.innerHTML) > Number.parseFloat(y.innerHTML));
-                console.log(x.innerHTML);
-                console.log(Number.parseFloat(x.innerHTML));
                 if (Number.parseFloat(x.innerHTML) > Number.parseFloat(y.innerHTML)) {
-                    // If so, mark as a switch and break the loop:
-                    console.log(x);
-                    console.log(y);
                     shouldSwitch = true;
                     break;
                 }
             } else if (dir === "desc") {
                 if (Number.parseFloat(x.innerHTML) < Number.parseFloat(y.innerHTML)) {
-                    // If so, mark as a switch and break the loop:
-                    console.log(x);
-                    console.log(y);
+
                     shouldSwitch = true;
                     break;
                 }

@@ -57,10 +57,11 @@ public class LoginController {
             logger.warning("Nazwa użytkownika już istnieje");
             return modelAndView;
         }
-
         userService.saveUser(user);
         logger.info("Succesfuly created user");
+        modelAndView.addObject("successfullyRegistered", true);
         modelAndView.setViewName("home");
+        System.out.println(modelAndView);
         return modelAndView;
     }
 }
