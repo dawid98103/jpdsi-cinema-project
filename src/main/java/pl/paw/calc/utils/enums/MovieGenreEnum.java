@@ -4,9 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum MovieGenreEnum {
+    COMEDY(3, "Komedia"),
     ACTION(1, "Akcji"),
     HORROR(2, "Horror"),
-    COMEDY(3, "Komedia"),
     ADVENTURE(4, "Przygodowy"),
     THRILLER(5, "Thriller"),
     FAMILY_MOVIE(6, "Film familijny");

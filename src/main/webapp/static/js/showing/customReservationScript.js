@@ -167,11 +167,17 @@ function sortTableByNumber(n){
     }
 }
 
-function initializeModal() {
-    reservationId = ($(this).data('id'));
+function initializeButtonWithId(reservationId){
     console.log(reservationId);
-    $("#confirmButton").on('click', () => {
+    $('#confirmButton').on('click', ()=> {
         deleteReservation(reservationId);
+    })
+}
+
+function initializeModal(){
+    $('#confirmModal').on('show.bs.modal', (e) => {
+        let reservationId = $(e.relatedTarget).data('id');
+        initializeButtonWithId(reservationId);
     })
 }
 
@@ -182,11 +188,18 @@ function deleteReservation(reservationId) {
         dateType: "json",
         contentType: "application/json; charset=utf-8",
         success: (data, status) => {
-            console.log(data);
-            alert("Rezerwacja Pomyślnie usunięta");
+            $('#confirmModal').modal('hide');
+            $('.top-right').notify({
+                message:{
+                    text: "Pomyślnie usunięto rezerwację!"
+                }
+            }).show();
+            setTimeout(() => {
+                location.reload();
+            }, 5000);
         },
-        error: (reqeust) => {
-            alert(reqeust.responseJSON.message);
+        error: (xhr, status, error) => {
+            console.log(xhr);
         }
     })
 }

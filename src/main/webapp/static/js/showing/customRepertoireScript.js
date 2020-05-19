@@ -13,19 +13,9 @@ $("#success-alert").hide();
 $(document).ready(() => {
     initializeModal();
     initializeButtons();
-    getShowingsByDate(new Date(), new Date().addDays(7));
-    initializeDatePicker();
+    getShowingsByDate(new Date().getTime(), new Date().addDays(7).getTime());
+    initializeDateTimePicker();
 })
-
-(function setDatePickerDates(){
-    let datePickerFrom = $('#from');
-    datePickerFrom.datepicker();
-    datePickerFrom.datepicker('setDate', new Date());
-
-    let datePickerTo = $('#to');
-    datePickerTo.datepicker();
-    datePickerTo.datepicker('setDate', new Date().addDays(7));
-}());
 
 function initializeButtons() {
     let test = $(".reservationButton");
@@ -44,15 +34,11 @@ function initializeButtons() {
 }
 
 function getShowingsByDate(startDate, endDate) {
-    let dateFrom = (startDate != null) ? startDate.getTime() : new Date($("#from").val()).getTime();
-    let dateTo = (endDate != null) ? endDate.getTime() : new Date($("#to").val()).getTime();
-
-    console.log(dateFrom);
-    console.log(dateTo);
-
+    console.log(startDate);
+    console.log(endDate);
     $.ajax({
         type: "GET",
-        url: `/showing/repertoire/${dateFrom}/${dateTo}`,
+        url: `/showing/repertoire/${startDate}/${endDate}`,
         dateType: "json",
         contentType: "application/json; charset=utf-8",
         success: (data, status) => {
@@ -91,6 +77,7 @@ function getShowingsByDate(startDate, endDate) {
 
 function initializeModal() {
     $("#reservationModal").on('show.bs.modal', (e) => {
+        console.log("blabal")
         $('#ticket-type').find("option").remove();
         $.ajax({
             type: "GET",
@@ -101,7 +88,6 @@ function initializeModal() {
                 console.log("success");
                 console.log(data);
                 data.forEach(ticket => {
-                    console.log(ticket);
                     let option = new Option(ticket.type, ticket.ticketId)
                     $(option).html(ticket.type);
                     $('#ticket-type').append(option);
@@ -143,37 +129,51 @@ function saveReservation(reservationModel) {
     })
 }
 
-function initializeDatePicker() {
-    $(function () {
-        let dateFormat = "dd/mm/yy",
-            from = $("#from").datepicker({
-                defaultDate: new Date(),
-                dateFormat: 'yy-mm-dd',
-                changeMonth: true,
-                numberOfMonths: 1,
-            })
-                .on("change", function () {
-                    to.datepicker("option", "minDate", getDate(this));
-                }),
-            to = $("#to").datepicker({
-                defaultDate: 7,
-                dateFormat: 'yy-mm-dd',
-                changeMonth: true,
-                numberOfMonths: 1,
-            })
-                .on("change", function () {
-                    from.datepicker("option", "maxDate", getDate(this));
-                });
-
-        function getDate(element) {
-            let date;
-            try {
-                date = $.datepicker.parseDate(dateFormat, element.value);
-            } catch (error) {
-                date = null;
+function initializeDateTimePicker() {
+    $(function() {
+        $('input[name="datetimes"]').daterangepicker({
+            timePicker:true,
+            timePicker24Hour: true,
+            startDate: new Date(),
+            endDate: new Date().addDays(7),
+            locale: {
+                format: 'DD-MM-YYYY HH:mm',
+                separator: " - ",
+                applyLabel: "Wybierz",
+                cancelLabel: "Anuluj",
+                fromLabel: "Od",
+                toLabel: "Do",
+                daysOfWeek: [
+                    "Pon",
+                    "Wt",
+                    "Sr",
+                    "Czw",
+                    "Pn",
+                    "Sb",
+                    "Nd"
+                ],
+                monthNames: [
+                    "Styczen",
+                    "Luty",
+                    "Marzec",
+                    "Kwiecien",
+                    "Maj",
+                    "Czerwiec",
+                    "Lipiec",
+                    "Sierpien",
+                    "Wrzesien",
+                    "Pazdziernik",
+                    "Listopad",
+                    "Grudzien"
+                ]
             }
-            return date;
-        }
+        });
     });
+
+    $('input[name="datetimes"]').on('apply.daterangepicker', (ev, picker) => {
+        let parsedStartDate = Date.parse(picker.startDate._d);
+        let parsedStartEnd = Date.parse(picker.endDate._d);
+        getShowingsByDate(parsedStartDate, parsedStartEnd);
+    })
 }
 

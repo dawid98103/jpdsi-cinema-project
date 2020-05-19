@@ -22,6 +22,7 @@ public class ShowingController {
 
     @GetMapping("/repertoire/{dateFrom}/{dateTo}")
     public List<MovieShowingResponseModel> getShowingsByDate(@PathVariable long dateFrom, @PathVariable long dateTo) {
+        System.out.println(showingService.getShowingsByDates(dateFrom, dateTo).size());
         return showingService.getShowingsByDates(dateFrom, dateTo);
     }
 

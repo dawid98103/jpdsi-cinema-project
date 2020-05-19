@@ -13,15 +13,24 @@
 <%@include file="modals/reserveModal.jsp" %>
 <div class="container">
     <div class="panel-heading panel-margin">
-        <div>
-            <label for="from">Od</label>
-            <input type="text" id="from" name="from">
-        </div>
-        <div>
-            <label for="to">Do</label>
-            <input type="text" id="to" name="to">
-        </div>
-        <button class="btn btn-success" onclick="getShowingsByDate()">Szukaj</button>
+        <form style="margin: 0px">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="datetimes-input">Wybierz date:</label>
+                        <input id="datetimes-input" type="text" name="datetimes" class="form-control"/>
+                    </div>
+                    <div class="col-md-6">
+
+                        <label for="sorting-type">Sortowanie:</label>
+                        <select class="form-control" id="sorting-type">
+                            <option>Alfabetycznie</option>
+                            <option>Po Dacie</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
     <table id="showingTable" class="table">
@@ -36,6 +45,5 @@
         </tbody>
     </table>
     <div class="alert alert-warning hidden" id="noShowingsError">Nie znaleziono seansów</div>
-
     <div class="notifications top-right"></div>
 </div>

@@ -46,7 +46,13 @@
     <definition name="myReservationPage" extends="base">
         <put-attribute name="title" value="Moje rezerwacje"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/view/myReservationPage.jsp"/>
+        <put-list-attribute name="stylesheets" inherit="true">
+            <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.min.css"/>
+            <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/styles/alert-bangtidy.min.css"/>
+            <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/styles/alert-blackgloss.min.css"/>
+        </put-list-attribute>
         <put-list-attribute name="javascripts" inherit="true">
+            <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.min.js"/>
             <add-attribute value="/static/js/showing/customReservationScript.js"></add-attribute>
         </put-list-attribute>
     </definition>
@@ -63,10 +69,13 @@
             <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.min.css"/>
             <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/styles/alert-bangtidy.min.css"/>
             <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/styles/alert-blackgloss.min.css"/>
-            <add-attribute value="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+            <add-attribute value="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
         </put-list-attribute>
         <put-list-attribute name="javascripts" inherit="true">
             <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.min.js"/>
+            <add-attribute value="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"/>
+            <add-attribute value="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"/>
+            <add-attribute value="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"/>
             <add-attribute value="/static/js/showing/customRepertoireScript.js"/>
         </put-list-attribute>
     </definition>

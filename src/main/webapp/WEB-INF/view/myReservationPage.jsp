@@ -33,7 +33,7 @@
                         <td>${reservation.reservationDateStart}</td>
                         <td>${reservation.reservationDateEnd}</td>
                         <td>${reservation.amountToPay} zł</td>
-                        <td><a class="btn btn-danger" data-toggle="modal" data-id="${reservation.reservationId}"
+                        <td><a class="btn btn-danger modal-opener" data-toggle="modal" data-id="${reservation.reservationId}"
                                href="#confirmModal">Anuluj rezerwację</a></td>
                     </tr>
                 </c:forEach>
@@ -45,3 +45,4 @@
         </c:otherwise>
     </c:choose>
 </div>
+<div class="notifications top-right"></div>
