@@ -15,35 +15,25 @@
     <div class="panel-heading panel-margin">
         <form style="margin: 0px">
             <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="datetimes-input">Wybierz date:</label>
-                        <input id="datetimes-input" type="text" name="datetimes" class="form-control"/>
-                    </div>
-                    <div class="col-md-6">
-
-                        <label for="sorting-type">Sortowanie:</label>
-                        <select class="form-control" id="sorting-type">
-                            <option>Alfabetycznie</option>
-                            <option>Po Dacie</option>
-                        </select>
-                    </div>
-                </div>
+                <label for="datetimes-input">Wybierz date:</label>
+                <input id="datetimes-input" type="text" name="datetimes" class="form-control"/>
             </div>
         </form>
     </div>
 
-    <table id="showingTable" class="table">
-        <thead class="basic-thead text-center">
-        <tr>
-            <th class="interactional-theader">Nazwa</th>
-            <th class="interactional-theader">Data</th>
-            <th>Operacje</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div id="table-container">
+        <table id="showingTable" class="table">
+            <thead class="basic-thead text-center">
+            <tr>
+                <th class="interactional-theader" onclick="sortTableByName(0)">Nazwa</th>
+                <th class="interactional-theader" onclick="sortTableByDate(1)">Data</th>
+                <th>Operacje</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
     <div class="alert alert-warning hidden" id="noShowingsError">Nie znaleziono seansów</div>
     <div class="notifications top-right"></div>
 </div>

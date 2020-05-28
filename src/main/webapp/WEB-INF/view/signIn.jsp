@@ -25,11 +25,11 @@
                 <c:url var="loginUrl" value="/login"/>
                 <form:form action="${loginUrl}" method="post">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <input type="text" name="user_name" class="form-control my-input" placeholder="Login">
+                        <input type="text" name="user_name" class="form-control my-input" placeholder="Login" autocomplete="false">
                     </div>
 
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <input type="password" name="password" class="form-control my-input" placeholder="Hasło">
+                        <input type="password" name="password" class="form-control my-input" placeholder="Hasło" autocomplete="false">
                     </div>
 
                     <div class="text-center ">

@@ -11,7 +11,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="html" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@include file="modals/confirmModal.jsp" %>
 <div class="container top-margin">
     <c:choose>
@@ -22,7 +22,7 @@
                     <th onclick="sortTableByName(0)" class="interactional-theader">Nazwa</th>
                     <th onclick="sortTableByDate(1)" class="interactional-theader">Początek rezerwacji</th>
                     <th onclick="sortTableByDate(2)" class="interactional-theader">Koniec Rezerwacji</th>
-                    <th onclick="sortTableByNumber(3)" class="interactional-theader">Do zapłaty</th>
+                    <th class="interactional-theader">Bilety</th>
                     <th>Operacje</th>
                 </tr>
                 </thead>
@@ -32,8 +32,13 @@
                         <td>${reservation.movie.movieName}</td>
                         <td>${reservation.reservationDateStart}</td>
                         <td>${reservation.reservationDateEnd}</td>
-                        <td>${reservation.amountToPay} zł</td>
-                        <td><a class="btn btn-danger modal-opener" data-toggle="modal" data-id="${reservation.reservationId}"
+                        <td>
+                            <c:forEach items="${reservation.ticketQuantities}" var="ticketQuantity">
+                                ${ticketQuantity.quantity} x ${ticketQuantity.ticket.type}
+                            </c:forEach>
+                        </td>
+                        <td><a class="btn btn-danger modal-opener" data-toggle="modal"
+                               data-id="${reservation.reservationId}"
                                href="#confirmModal">Anuluj rezerwację</a></td>
                     </tr>
                 </c:forEach>

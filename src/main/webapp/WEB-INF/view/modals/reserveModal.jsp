@@ -12,25 +12,16 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title"><span class="movie-name"></span><span class="movie-date"></span></h4>
+                <div class="nav-info-header">
+                    <h4 class="modal-title"><span class="movie-name"></span></h4><div class="vertical"></div><h4><span class="movie-date"></span></h4>
+                </div>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="form-group">
-                            <label for="ticket-type">Typ:</label>
-                            <select class="form-control" id="ticket-type">
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="ticket-quantity">Ilość:</label>
-                            <select class="form-control" id="ticket-quantity">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+                        <div id="ticket-type-window">
+                            <ul class="list-group ticket-type-list">
+                            </ul>
                         </div>
                     </div>
                     <div class="col-lg-4">

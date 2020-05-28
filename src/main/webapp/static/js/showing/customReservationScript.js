@@ -191,12 +191,12 @@ function deleteReservation(reservationId) {
             $('#confirmModal').modal('hide');
             $('.top-right').notify({
                 message:{
-                    text: "Pomyślnie usunięto rezerwację!"
+                    text: "Pomyślnie usunięto rezerwację!  "
                 }
             }).show();
             setTimeout(() => {
                 location.reload();
-            }, 5000);
+            }, 2000);
         },
         error: (xhr, status, error) => {
             console.log(xhr);

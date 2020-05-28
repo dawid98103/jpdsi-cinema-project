@@ -25,6 +25,8 @@
                         href="${ctx}/">Home</a></li>
                 <li class="${pagina.endsWith('/movies') ? 'active' : ''}"><a
                         href="${ctx}/movie/info/movies">Baza filmów</a></li>
+                <li class="${pagina.endsWith('/ranking') ? 'active' : ''}"><a href="${ctx}/movie/ranking">Ranking
+                    filmów</a></li>
                 <security:authorize access="hasAnyAuthority('USER','ADMIN')">
                     <li class="${pagina.endsWith('/repertoireOverview') ? 'active' : ''}"><a
                             href="${pageContext.request.contextPath}/showing/repertoireOverview">Repertuar</a></li>
