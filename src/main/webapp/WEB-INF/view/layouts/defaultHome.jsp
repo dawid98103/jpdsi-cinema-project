@@ -26,16 +26,14 @@
     </c:forEach>
     <link rel="shortcut icon" href="/static/images/icons8-movie-64.png">
 </head>
-    <body>
-        <div class="navbar-collapse collapse">
-            <tiles:insertAttribute name="navbar"/>
-        </div>
-            <tiles:insertAttribute name="body"/>
-        <footer id="footer">
-            <tiles:insertAttribute name="footer"/>
-        </footer>
-        <c:forEach var="script" items="${javascripts}">
-            <script src="<c:url value="${script}"/>"></script>
-        </c:forEach>
-    </body>
+<body>
+<tiles:insertAttribute name="navbar"/>
+<tiles:insertAttribute name="body"/>
+<footer id="footer">
+    <tiles:insertAttribute name="footer"/>
+</footer>
+<c:forEach var="script" items="${javascripts}">
+    <script src="<c:url value="${script}"/>"></script>
+</c:forEach>
+</body>
 </html>

@@ -1,6 +1,4 @@
 const showingsErrorAlert = $("#noShowingsError");
-const plusButton = $("button.inc-button");
-const minusButton = $("button.dec-button");
 let movieId = 0;
 let showingId = 0;
 
@@ -158,7 +156,6 @@ function saveReservation() {
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(addReservationRequest),
         success: (response) => {
-            console.log(response);
             $('.top-right').notify({message: {text: 'Rezerwacja dodana pomyślnie!'}}).show();
             $("#reservationModal").modal('hide');
         },

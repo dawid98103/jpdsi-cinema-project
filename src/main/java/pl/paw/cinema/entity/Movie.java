@@ -1,6 +1,10 @@
 package pl.paw.cinema.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Formula;
 import pl.paw.cinema.utils.enums.MovieGenreEnum;
 
 import javax.persistence.*;
@@ -41,6 +45,9 @@ public class Movie {
 
     @Column(name = "movie_genre")
     private MovieGenreEnum movieGenre;
+
+    @Formula("(select AVG(Rate.mark) from Rate where Rate.movie_id = movie_id)")
+    private Integer averageRate;
 
 //    //TODO rekurencja
 //    @OneToMany(mappedBy = "movie")

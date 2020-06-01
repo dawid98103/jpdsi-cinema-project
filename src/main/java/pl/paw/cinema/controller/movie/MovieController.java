@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import pl.paw.cinema.entity.Movie;
 import pl.paw.cinema.service.MovieService;
-import pl.paw.cinema.service.RateService;
 
-import java.util.List;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,13 +18,11 @@ import java.util.List;
 public class MovieController {
 
     private final MovieService movieService;
-    private final RateService rateService;
 
     @GetMapping("/info/movies")
     public ModelAndView getAllMovies() {
         ModelAndView modelAndView = new ModelAndView();
-        List<Movie> allMovies = movieService.findAll();
-        modelAndView.addObject("movies", allMovies);
+        modelAndView.addObject("movies", movieService.findAll());
         modelAndView.setViewName("movieBase");
         return modelAndView;
     }
@@ -32,16 +30,21 @@ public class MovieController {
     @GetMapping("/info/{movieId}")
     public ModelAndView showMovieInfo(@PathVariable int movieId) {
         ModelAndView modelAndView = new ModelAndView();
-        Movie retrievedMovie = movieService.findMovieById(movieId);
-        modelAndView.addObject("movie", retrievedMovie);
+        modelAndView.addObject("movie", movieService.findMovieById(movieId));
         modelAndView.setViewName("movieInfo");
         return modelAndView;
     }
 
     @GetMapping("/ranking")
-    public ModelAndView showMovieRanking(){
+    public ModelAndView showMovieRanking() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("movieRanking");
+        modelAndView.addObject(
+                "movie",
+                movieService.findAll().stream()
+                        .filter(movie -> movie.getAverageRate() != null)
+                        .sorted(Comparator.comparingInt(Movie::getAverageRate).reversed())
+                        .collect(Collectors.toList()));
         return modelAndView;
     }
 //    @GetMapping("/repertoire")

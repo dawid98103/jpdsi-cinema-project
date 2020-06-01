@@ -642,3 +642,14 @@ button.count {
     padding: 10px 10px;
 }
 
+.flex-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ranking-text{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5em;
+}
+

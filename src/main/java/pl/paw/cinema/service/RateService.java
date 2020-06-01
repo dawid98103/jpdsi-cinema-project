@@ -44,8 +44,4 @@ public class RateService {
         User retrievedUser = userDetailsService.getCurrentUserId(auth.getName());
         return rateRepository.findByUserIdAndMovieId(retrievedUser.getId(), movieId).map(Rate::getMark).orElse(0);
     }
-
-    public List<Rate> getAllRates(){
-        return rateRepository.findAll();
-    }
 }

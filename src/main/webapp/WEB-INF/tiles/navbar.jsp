@@ -9,27 +9,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<div class="navbar navbar-inverse navbar-fixed-top headroom">
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<c:set var="pagina" value="${requestScope['javax.servlet.forward.request_uri']}"/>
+<div class="navbar navbar-inverse navbar-fixed-top headroom animated slideDown">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                     class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/"><i class="fas fa-video"></i> CINEMA CITY</a>
+            <a class="navbar-brand" href="${ctx}/"><i class="fas fa-video"></i> CINEMA CITY</a>
         </div>
-        <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-        <c:set var="pagina" value="${requestScope['javax.servlet.forward.request_uri']}"/>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav pull-right">
                 <li class="${pagina.endsWith('/') ? 'active' : ''}"><a
                         href="${ctx}/">Home</a></li>
                 <li class="${pagina.endsWith('/movies') ? 'active' : ''}"><a
                         href="${ctx}/movie/info/movies">Baza filmów</a></li>
-                <li class="${pagina.endsWith('/ranking') ? 'active' : ''}"><a href="${ctx}/movie/ranking">Ranking
+                <li class="${pagina.endsWith('/movie/ranking') ? 'active' : ''}"><a href="${ctx}/movie/ranking">Ranking
                     filmów</a></li>
                 <security:authorize access="hasAnyAuthority('USER','ADMIN')">
                     <li class="${pagina.endsWith('/repertoireOverview') ? 'active' : ''}"><a
-                            href="${pageContext.request.contextPath}/showing/repertoireOverview">Repertuar</a></li>
+                            href="${ctx}/showing/repertoireOverview">Repertuar</a></li>
                 </security:authorize>
                 <security:authorize access="hasAnyAuthority('USER','ADMIN')">
                     <li class="nav-button"><a class="${pagina.endsWith('/myReservationPage') ? 'active' : ''}"
