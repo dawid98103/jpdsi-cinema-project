@@ -8,6 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <div>
     <div class="row">
         <article class="col-xs-12 maincontent form-panel top-margin">
@@ -44,7 +47,12 @@
 
                                     <li class="list-group-item dark">
                                         <label for="rate-input" class="control-label">Oceń film:</label>
-                                        <input id="rate-input" data-movie-id= ${movie.movieId}>
+                                        <security:authorize access="!isAuthenticated()">
+                                            <input id="rate-input" disabled="true" data-movie-id= ${movie.movieId}>
+                                        </security:authorize>
+                                        <security:authorize access="isAuthenticated()">
+                                            <input id="rate-input" data-movie-id= ${movie.movieId}>
+                                        </security:authorize>
                                     </li>
                                 </ul>
                             </div>

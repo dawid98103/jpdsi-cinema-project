@@ -29,21 +29,20 @@ public class MyUserDetailsService implements UserDetailsService {
         return buildUserForAuthentication(user, authorities);
     }
 
-    public User getCurrentUserId(String userName){
+    public User getCurrentUserId(String userName) {
         return userService.findUserByUserName(userName);
     }
 
     private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {
-        Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
+        Set<GrantedAuthority> roles = new HashSet<>();
         for (Role role : userRoles) {
             roles.add(new SimpleGrantedAuthority(role.getRole()));
         }
-        List<GrantedAuthority> grantedAuthorities = new ArrayList<>(roles);
-        return grantedAuthorities;
+        return new ArrayList<>(roles);
     }
 
     private UserDetails buildUserForAuthentication(User user, List<GrantedAuthority> authorities) {
-        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 user.getActive(), true, true, true, authorities);
     }
 }

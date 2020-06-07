@@ -22,7 +22,6 @@
             <add-attribute value="/static/js/jQuery.headroom.min.js"/>
             <add-attribute value="/static/js/template.js"/>
             <add-attribute value="https://kit.fontawesome.com/246d3ce75a.js"/>
-            <add-attribute value="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"/>
             <add-attribute value="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/>
         </put-list-attribute>
     </definition>
@@ -93,13 +92,18 @@
                     value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/styles/alert-bangtidy.min.css"/>
             <add-attribute
                     value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/styles/alert-blackgloss.min.css"/>
-            <add-attribute value="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+            <add-attribute value="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css"/>
+            <add-attribute value="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+            <add-attribute value="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css"/>
         </put-list-attribute>
         <put-list-attribute name="javascripts" inherit="true">
             <add-attribute
                     value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.min.js"/>
             <add-attribute value="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"/>
-            <add-attribute value="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"/>
+            <add-attribute value="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"/>
+            <add-attribute value="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"/>
+            <add-attribute value="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"/>
+            <add-attribute value="/static/js/jquery-spring.friendly.js"/>
             <add-attribute value="/static/js/showing/customRepertoireScript.js"/>
         </put-list-attribute>
     </definition>
@@ -111,9 +115,13 @@
             <add-attribute
                     value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js"/>
             <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/locales/pl.js"/>
-            <add-attribute value="/static/js/movie/movieRanking.js"></add-attribute>
+            <add-attribute value="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"/>
+            <add-attribute value="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"/>
+            <add-attribute value="/static/js/jquery-spring.friendly.js"/>
+            <add-attribute value="/static/js/movie/movieRanking.js"/>
         </put-list-attribute>
         <put-list-attribute name="stylesheets" inherit="true">
+            <add-attribute value="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css"/>
             <add-attribute
                     value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/css/star-rating.css"/>
         </put-list-attribute>

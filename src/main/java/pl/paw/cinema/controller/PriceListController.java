@@ -1,4 +1,4 @@
-package pl.paw.cinema.controller.priceList;
+package pl.paw.cinema.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

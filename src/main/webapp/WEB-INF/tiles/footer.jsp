@@ -11,12 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 widget">
-                    <div class="widget-body">
-                        <p class="simplenav">
-                            <a href="#">Home</a> |
-                            <b><a href="signup.html">Sign up</a></b>
-                        </p>
-                    </div>
+
                 </div>
                 <div class="col-md-6 widget">
                     <div class="widget-body">

@@ -1,6 +1,8 @@
-package pl.paw.cinema.controller.movie;
+package pl.paw.cinema.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
+import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,9 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.paw.cinema.entity.Movie;
 import pl.paw.cinema.service.MovieService;
 
-import java.util.Comparator;
-import java.util.stream.Collectors;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/movie")
@@ -19,12 +18,22 @@ public class MovieController {
 
     private final MovieService movieService;
 
+    @GetMapping("")
+    public DataTablesOutput<Movie> getMovies(DataTablesInput input) {
+        return movieService.findAll(input);
+    }
+
     @GetMapping("/info/movies")
     public ModelAndView getAllMovies() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("movies", movieService.findAll());
         modelAndView.setViewName("movieBase");
         return modelAndView;
+    }
+
+    @GetMapping("/ranking")
+    public ModelAndView showRankingPage() {
+        return new ModelAndView("movieRanking");
     }
 
     @GetMapping("/info/{movieId}")
@@ -35,18 +44,7 @@ public class MovieController {
         return modelAndView;
     }
 
-    @GetMapping("/ranking")
-    public ModelAndView showMovieRanking() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("movieRanking");
-        modelAndView.addObject(
-                "movie",
-                movieService.findAll().stream()
-                        .filter(movie -> movie.getAverageRate() != null)
-                        .sorted(Comparator.comparingInt(Movie::getAverageRate).reversed())
-                        .collect(Collectors.toList()));
-        return modelAndView;
-    }
+
 //    @GetMapping("/repertoire")
 //    public ModelAndView showReservationPage(@ModelAttribute("date") ShowingDateModel showingDateModel) {
 //        ModelAndView modelAndView = new ModelAndView();

@@ -7,7 +7,6 @@ import pl.paw.cinema.entity.User;
 import pl.paw.cinema.repository.RoleRepository;
 import pl.paw.cinema.repository.UserRepository;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 
@@ -19,23 +18,19 @@ public class UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
-    public User findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
-
     public User findUserByUserName(String userName) {
-        return userRepository.findByUserName(userName);
+        return userRepository.findByUsername(userName);
     }
 
     public User saveUser(User user) {
         user.setPassword(passwordEncoder().encode(user.getPassword()));
         user.setActive(true);
         Role userRole = roleRepository.findByRole("USER");
-        user.setRoles(new HashSet<Role>(Collections.singletonList(userRole)));
+        user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
         return userRepository.save(user);
     }
 
     public boolean isUsernameExists(String username) {
-        return userRepository.existsByUserName(username);
+        return userRepository.existsByUsername(username);
     }
 }

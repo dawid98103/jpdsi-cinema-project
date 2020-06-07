@@ -1,4 +1,4 @@
-package pl.paw.cinema.controller.rate;
+package pl.paw.cinema.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

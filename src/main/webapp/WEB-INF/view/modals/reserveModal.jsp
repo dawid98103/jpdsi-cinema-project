@@ -6,14 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+<form class="modal fade" id="reservationFormModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
                 <div class="nav-info-header">
-                    <h4 class="modal-title"><span class="movie-name"></span></h4><div class="vertical"></div><h4><span class="movie-date"></span></h4>
+                    <h4 class="modal-title"><span class="movie-name"/></h4>
                 </div>
             </div>
             <div class="modal-body">
@@ -33,9 +33,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-                <button type="button" class="btn btn-primary" id="reservationButton">Rezerwuj</button>
+                <button type="submit" class="btn btn-success" id="reservationButton">Rezerwuj</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div>
+</form>
 <!-- /.modal -->

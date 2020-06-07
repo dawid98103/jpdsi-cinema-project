@@ -22,16 +22,16 @@ public class Rate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rate_id")
+    @javax.persistence.Column(name = "rate_id")
     private int rateId;
 
-    @Column(name = "movie_id")
+    @javax.persistence.Column(name = "movie_id")
     private int movieId;
 
-    @Column(name = "user_id")
+    @javax.persistence.Column(name = "user_id")
     private int userId;
 
-    @Column(name = "mark")
+    @javax.persistence.Column(name = "mark")
     private int mark;
 
     @CreationTimestamp

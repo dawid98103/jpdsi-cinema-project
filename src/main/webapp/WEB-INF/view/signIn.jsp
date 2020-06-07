@@ -11,38 +11,69 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<div class="container top-margin">
-    <div class="my-login-form">
-        <div class="text-center">
-            <div class="header-title">
-                <h1 class="wv-heading--title">
-                    Zaloguj się
-                </h1>
-            </div>
-        </div>
-        <div class="mx-auto">
-            <div class="myform form ">
-                <c:url var="loginUrl" value="/login"/>
-                <form:form action="${loginUrl}" method="post">
-                    <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <input type="text" name="user_name" class="form-control my-input" placeholder="Login" autocomplete="false">
-                    </div>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<div class="signup-form top-margin">
+    <form:form id="register-form" method="post"
+               action="${contextPath}/login"
+               class="text-left" style="margin-top: 150px;">
+        <h2>Logowanie</h2>
+        <p class="hint-text">Zaloguj się na swoje konto</p>
 
-                    <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <input type="password" name="password" class="form-control my-input" placeholder="Hasło" autocomplete="false">
-                    </div>
-
-                    <div class="text-center ">
-                        <button type="submit" class=" btn btn-block send-button tx-tfm">Zaloguj</button>
-                    </div>
-                    <c:if test="${param.error}">
-                        <b><p class="text-danger text-center">Zła nazwa użytkownika lub hasło</p></b>
-                    </c:if>
-                    <p class="small mt-3">By signing up, you are indicating that you have read and agree to the <a
-                            href="#" class="ps-hero__content__link">Terms of Use</a> and <a href="#">Privacy Policy</a>.
-                    </p>
-                </form:form>
-            </div>
+        ${message}
+        <div class="form-group ${error != null ? 'has-error' : ''} ">
+            <input type="text" name="username" class="form-control my-input" placeholder="Login" autocomplete="false" required="true">
         </div>
-    </div>
+
+        <div class="form-group ${error != null ? 'has-error' : ''} ">
+            <input type="password" name="password" class="form-control my-input" placeholder="Hasło" autocomplete="false" required="true">
+        </div>
+        <span>${error}</span>
+        <div class="form-group">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <button type="submit" class="btn btn-success btn-lg btn-block">Zaloguj</button>
+        </div>
+    </form:form>
 </div>
+
+
+
+
+
+
+<%--<div class="container top-margin">--%>
+<%--    <div class="my-login-form">--%>
+<%--        <div class="text-center">--%>
+<%--            <div class="header-title">--%>
+<%--                <h1 class="wv-heading--title">--%>
+<%--                    Zaloguj się--%>
+<%--                </h1>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <div class="mx-auto">--%>
+<%--            <div class="myform form ">--%>
+<%--                <c:url var="loginUrl" value="/login"/>--%>
+<%--                <form:form action="${loginUrl}" method="post">--%>
+<%--                    <div class="form-group ${status.error ? 'has-error' : ''}">--%>
+<%--                        <input type="text" name="user_name" class="form-control my-input" placeholder="Login" autocomplete="false">--%>
+<%--                    </div>--%>
+
+<%--                    <div class="form-group ${status.error ? 'has-error' : ''}">--%>
+<%--                        <input type="password" name="password" class="form-control my-input" placeholder="Hasło" autocomplete="false">--%>
+<%--                    </div>--%>
+
+<%--                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
+
+<%--                    <div class="text-center ">--%>
+<%--                        <button type="submit" class=" btn btn-block send-button tx-tfm">Zaloguj</button>--%>
+<%--                    </div>--%>
+<%--                    <c:if test="${param.error}">--%>
+<%--                        <b><p class="text-danger text-center">Zła nazwa użytkownika lub hasło</p></b>--%>
+<%--                    </c:if>--%>
+<%--                    <p class="small mt-3">By signing up, you are indicating that you have read and agree to the <a--%>
+<%--                            href="#" class="ps-hero__content__link">Terms of Use</a> and <a href="#">Privacy Policy</a>.--%>
+<%--                    </p>--%>
+<%--                </form:form>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>

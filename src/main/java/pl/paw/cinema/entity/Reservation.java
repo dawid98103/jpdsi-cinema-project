@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -23,30 +22,30 @@ import java.util.Set;
 public class Reservation implements Serializable {
 
     @Id
-    @Column(name = "reservation_id")
+    @javax.persistence.Column(name = "reservation_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reservationId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
     @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL)
     private List<TicketQuantity> ticketQuantities;
 
-    @Column(name = "amount_to_pay")
+    @javax.persistence.Column(name = "amount_to_pay")
     private BigDecimal amountToPay;
 
-    @Column(name = "reservation_date_start")
+    @javax.persistence.Column(name = "reservation_date_start")
     @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
     @JsonSerialize(using = CustomLocalDateTimeSerializer.class)
     private LocalDateTime reservationDateStart;
 
-    @Column(name = "reservation_date_end")
+    @javax.persistence.Column(name = "reservation_date_end")
     @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
     @JsonSerialize(using = CustomLocalDateTimeSerializer.class)
     private LocalDateTime reservationDateEnd;

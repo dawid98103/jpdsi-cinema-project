@@ -11,29 +11,19 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@include file="modals/reserveModal.jsp" %>
-<div class="container">
-    <div class="panel-heading panel-margin">
-        <form style="margin: 0px">
-            <div class="form-group">
-                <label for="datetimes-input">Wybierz date:</label>
-                <input id="datetimes-input" type="text" name="datetimes" class="form-control"/>
-            </div>
-        </form>
-    </div>
 
-    <div id="table-container">
-        <table id="showingTable" class="table">
-            <thead class="basic-thead text-center">
-            <tr>
-                <th class="interactional-theader" onclick="sortTableByName(0)">Nazwa</th>
-                <th class="interactional-theader" onclick="sortTableByDate(1)">Data</th>
-                <th>Operacje</th>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-    <div class="alert alert-warning hidden" id="noShowingsError">Nie znaleziono seansów</div>
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+
+<div class="container top-margin datatable-container">
+    <table id="showingTable" class="table" cellspacing="5" cellpadding="5">
+        <thead>
+        <th>ID</th>
+        <th>Nazwa Filmu</th>
+        <th>Długość senasu</th>
+        <th>Data seansu</th>
+        <th>Opcje</th>
+        </thead>
+    </table>
     <div class="notifications top-right"></div>
 </div>

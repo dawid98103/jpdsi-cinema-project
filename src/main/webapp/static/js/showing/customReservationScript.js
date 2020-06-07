@@ -1,3 +1,6 @@
+const token = $("meta[name='_csrf']").attr("content");
+const header = $("meta[name='_csrf_header']").attr("content");
+
 $(document).ready(() => {
     initializeModal();
 })
@@ -184,6 +187,9 @@ function initializeModal(){
 function deleteReservation(reservationId) {
     $.ajax({
         type: "DELETE",
+        beforeSend: (request) => {
+            request.setRequestHeader(header, token);
+        },
         url: `/showing/reservation/${reservationId}` ,
         dateType: "json",
         contentType: "application/json; charset=utf-8",

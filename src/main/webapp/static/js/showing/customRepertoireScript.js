@@ -1,89 +1,50 @@
-const showingsErrorAlert = $("#noShowingsError");
-let movieId = 0;
-let showingId = 0;
-
-Date.prototype.addDays = function (days) {
-    var date = new Date(this.valueOf());
-    date.setDate(date.getDate() + days);
-    return date;
-}
-
-$("#success-alert").hide();
+const token = $("meta[name='_csrf']").attr("content");
+const header = $("meta[name='_csrf_header']").attr("content");
 
 $(document).ready(() => {
+    initializeDataTable();
     initializeModal();
-    initializeButtons();
-    getShowingsByDate(new Date().getTime(), new Date().addDays(7).getTime());
-    initializeDateTimePicker();
 })
 
-function initializeButtons() {
-    $("#reservationButton").click(() => {
-        console.log("tutaj");
-        let ticketQuantity = parseInt($("#ticket-quantity").val());
-        let ticketId = parseInt($("#ticket-type").val());
-        saveReservation({
-            "movieId": this.movieId,
-            "ticketId": ticketId,
-            "showingId": this.showingId,
-            "ticketQuantity": ticketQuantity
-        });
+$("#showingTable_filter").css("display", "none");
+
+function initializeDataTable() {
+    $("#showingTable").DataTable({
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Polish.json"
+        },
+        ajax: '/showing',
+        serverSide: true,
+        columns: [
+            {
+                data: 'showingId'
+            },
+            {
+                data: 'movieName'
+            },
+            {
+                data: 'showingDuration',
+                render: (data) => {
+                    return data + ' min';
+                }
+            },
+            {
+                data: 'showingDate'
+            },
+            {
+                data: null,
+                render: (data, type, row) => {
+                    return '<button class="btn btn-primary" data-toggle="modal" data-movie-id="' + row.movieId + '" data-movie-name="' + row.movieName + '" data-showing-id="' + row.showingId + '" data-showing-img="' + row.showingImgUrl + '" data-target="#reservationFormModal">' + "Rezerwuj" + '</button>'
+                },
+                orderable: false,
+                searchable: false
+            }
+        ]
     });
 }
 
-function increaseCounter(counterId) {
-    let value = $(`#counter-${counterId}`).val();
-    $(`#counter-${counterId}`).val(parseInt(value) + 1);
-}
-
-function decreaseCounter(counterId) {
-    let value = $(`#counter-${counterId}`).val();
-    value -= 1;
-    $(`#counter-${counterId}`).val((parseInt(value) < 0) ? 0 : parseInt(value));
-}
-
-function getShowingsByDate(startDate, endDate) {
-    $.ajax({
-        type: "GET",
-        url: `/showing/repertoire/${startDate}/${endDate}`,
-        dateType: "json",
-        contentType: "application/json; charset=utf-8",
-        success: (data, status) => {
-            $("#showingTable").find("tr:not(:first)").remove();
-            let trHTML = '';
-            data.forEach(showing => {
-                showing.movies.forEach(movie => {
-                    let movieId = movie.movieId;
-                    let showingId = showing.showingId;
-                    trHTML += `
-                        <tr class="basic-trows"><td class="align-middle">${movie.movieName}</td>
-                        <td class="basic-tdata">${showing.showingDate}</td>
-                        <td class="class="basic-tdata""><a type="button" 
-                        class="btn btn-success" 
-                        id="showModal" 
-                        data-toggle="modal" 
-                        href="#reservationModal" 
-                        data-movie-id="${movieId}" 
-                        data-showing-id="${showingId}" 
-                        data-movie-date="${showing.showingDate}"
-                        data-movie-name="${movie.movieName}"
-                        data-movie-photo="${movie.movieSmallUrl}">Rezerwuj</a></td>
-                        </tr>`
-                })
-            })
-            $("#showingTable tbody").append(trHTML);
-
-            (data.length === 0) ? showingsErrorAlert.removeClass("hidden") : showingsErrorAlert.addClass("hidden");
-        },
-        error: (request, ajaxOptions, error) => {
-            console.log(request.responseJSON.message);
-            alert(request.responseText);
-        }
-    })
-}
-
 function initializeModal() {
-    $("#reservationModal").on('show.bs.modal', (e) => {
+    $("#reservationFormModal").on('show.bs.modal', (e) => {
         $("#ticket-type-window").find("li.list-group-item").remove();
         let trHTML = '';
         $.ajax({
@@ -102,37 +63,46 @@ function initializeModal() {
                                     </div>
                                     <div class="col-lg-8">
                                         <div class='inc-dec-container'>
-                                            <button class='count down_count btn btn-info' title='Down' onclick="decreaseCounter(${ticketId})"><span class="glyphicon glyphicon-minus"/></button>
-                                            <input id="counter-${ticketId}" class="counter" data-ticketId="${ticketId}" type="text" placeholder="value..." value='0' />    
-                                            <button class='count up_count btn btn-info'  title='Up' onclick="increaseCounter(${ticketId})"><span class="glyphicon glyphicon-plus"/></button>
+                                            <select class="form-control ticket-quantity" data-ticketId="${ticketId}">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                             </li>`
                 })
                 $(".ticket-type-list").append(trHTML);
-                initializeModalButtons();
             },
             error: (reqeust) => {
                 alert(reqeust.responseJSON.message);
             }
         })
 
-        this.movieId = $(e.relatedTarget).data('movie-id');
-        this.showingId = $(e.relatedTarget).data('showing-id');
-        let movieName = $(e.relatedTarget).data('movie-name');
-        let showingDate = $(e.relatedTarget).data('movie-date');
-        let moviePhoto = $(e.relatedTarget).data('movie-photo');
+        let triggerLink = $(e.relatedTarget)
+        let movieId = triggerLink.data("movie-id")
+        let movieName = triggerLink.data("movie-name");
+        let showingId = triggerLink.data("showing-id");
+        let showingImg = triggerLink.data("showing-img");
 
-        $(e.currentTarget).find('span.movie-name').text(movieName);
-        $(e.currentTarget).find('span.movie-date').text(showingDate);
-        $(e.currentTarget).find('#modal-img').attr('src', moviePhoto);
+        $(e.currentTarget).find('.movie-name').text(movieName);
+        $(e.currentTarget).find('#modal-img').attr('src', showingImg);
+
+        $("#reservationFormModal").on('submit', (e) => {
+            e.preventDefault();
+            console.log("zapisz rezerwacje!");
+            saveReservation(movieId, showingId);
+        })
     });
 }
 
-function saveReservation() {
+function saveReservation(movieId, showingId) {
     let ticketToAdd = [];
-    let counters = $(".counter");
+    let counters = $(".ticket-quantity");
+    console.log(counters);
     for (let i = 0; i < counters.length; i++) {
         ticketToAdd.push(
             {
@@ -141,182 +111,27 @@ function saveReservation() {
             }
         )
     }
-    console.log(ticketToAdd);
-
-    let addReservationRequest = {
-        movieId: this.movieId,
-        showingId: this.showingId,
-        ticketList: ticketToAdd
-    }
 
     $.ajax({
         type: "POST",
+        beforeSend: (request) => {
+            request.setRequestHeader(header, token);
+        },
         url: '/showing/reservation',
         dateType: "json",
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(addReservationRequest),
-        success: (response) => {
+        data: JSON.stringify({
+            movieId: movieId,
+            showingId: showingId,
+            ticketList: ticketToAdd
+        }),
+        success: () => {
             $('.top-right').notify({message: {text: 'Rezerwacja dodana pomyślnie!'}}).show();
-            $("#reservationModal").modal('hide');
+            $("#reservationFormModal").modal('hide');
         },
         error: (xhr, status, error) => {
             console.log(xhr);
+            $('.top-right').notify({message: {text: "dsds"}}).show();
         }
     })
 }
-
-function initializeDateTimePicker() {
-    $(function () {
-        $('input[name="datetimes"]').daterangepicker({
-            timePicker: true,
-            timePicker24Hour: true,
-            startDate: new Date(),
-            endDate: new Date().addDays(7),
-            locale: {
-                format: 'DD-MM-YYYY HH:mm',
-                separator: " - ",
-                applyLabel: "Wybierz",
-                cancelLabel: "Anuluj",
-                fromLabel: "Od",
-                toLabel: "Do",
-                daysOfWeek: [
-                    "Pon",
-                    "Wt",
-                    "Sr",
-                    "Czw",
-                    "Pn",
-                    "Sb",
-                    "Nd"
-                ],
-                monthNames: [
-                    "Styczen",
-                    "Luty",
-                    "Marzec",
-                    "Kwiecien",
-                    "Maj",
-                    "Czerwiec",
-                    "Lipiec",
-                    "Sierpien",
-                    "Wrzesien",
-                    "Pazdziernik",
-                    "Listopad",
-                    "Grudzien"
-                ]
-            }
-        });
-    });
-
-    $('input[name="datetimes"]').on('apply.daterangepicker', (ev, picker) => {
-        let parsedStartDate = Date.parse(picker.startDate._d);
-        let parsedStartEnd = Date.parse(picker.endDate._d);
-        getShowingsByDate(parsedStartDate, parsedStartEnd);
-    })
-}
-
-function sortTableByName(n) {
-    let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("showingTable");
-    switching = true;
-    dir = "asc";
-    while (switching) {
-        // Start by saying: no switching is done:
-        switching = false;
-        rows = table.rows;
-        /* Loop through all table rows (except the
-        first, which contains table headers): */
-        for (i = 1; i < (rows.length - 1); i++) {
-            // Start by saying there should be no switching:
-            shouldSwitch = false;
-            /* Get the two elements you want to compare,
-            one from current row and one from the next: */
-            x = rows[i].getElementsByTagName("TD")[n];
-            y = rows[i + 1].getElementsByTagName("TD")[n];
-            /* Check if the two rows should switch place,
-            based on the direction, asc or desc: */
-            console.log("tutej");
-            console.log(x.innerHTML);
-            console.log(typeof x.innerHTML);
-            if (dir == "asc") {
-                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                    // If so, mark as a switch and break the loop:
-                    shouldSwitch = true;
-                    break;
-                }
-            } else if (dir == "desc") {
-                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                    // If so, mark as a switch and break the loop:
-                    shouldSwitch = true;
-                    break;
-                }
-            }
-        }
-        if (shouldSwitch) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
-            switchcount++;
-        } else {
-            if (switchcount == 0 && dir == "asc") {
-                dir = "desc";
-                switching = true;
-            }
-        }
-    }
-}
-
-function sortTableByDate(n) {
-    let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("showingTable");
-    switching = true;
-    console.log(table);
-    // Set the sorting direction to ascending:
-    dir = "asc";
-    /* Make a loop that will continue until
-    no switching has been done: */
-    while (switching) {
-        // Start by saying: no switching is done:
-        switching = false;
-        rows = table.rows;
-        /* Loop through all table rows (except the
-        first, which contains table headers): */
-        for (i = 1; i < (rows.length - 1); i++) {
-            // Start by saying there should be no switching:
-            shouldSwitch = false;
-            /* Get the two elements you want to compare,
-            one from current row and one from the next: */
-            x = rows[i].getElementsByTagName("TD")[n];
-            y = rows[i + 1].getElementsByTagName("TD")[n];
-            /* Check if the two rows should switch place,
-            based on the direction, asc or desc: */
-            console.log(typeof x.innerHTML);
-            if (dir == "asc") {
-                if (new Date(x.innerHTML) > new Date(y.innerHTML)) {
-                    // If so, mark as a switch and break the loop:
-                    shouldSwitch = true;
-                    break;
-                }
-            } else if (dir == "desc") {
-                if (new Date(x.innerHTML) < new Date(y.innerHTML)) {
-                    // If so, mark as a switch and break the loop:
-                    shouldSwitch = true;
-                    break;
-                }
-            }
-        }
-        if (shouldSwitch) {
-            /* If a switch has been marked, make the switch
-            and mark that a switch has been done: */
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
-            // Each time a switch is done, increase this count by 1:
-            switchcount++;
-        } else {
-            /* If no switching has been done AND the direction is "asc",
-            set the direction to "desc" and run the while loop again. */
-            if (switchcount == 0 && dir == "asc") {
-                dir = "desc";
-                switching = true;
-            }
-        }
-    }
-}
-

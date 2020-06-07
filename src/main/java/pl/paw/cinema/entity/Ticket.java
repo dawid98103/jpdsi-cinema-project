@@ -18,17 +18,17 @@ import java.math.BigDecimal;
 public class Ticket {
 
     @Id
-    @Column(name = "ticket_id")
+    @javax.persistence.Column(name = "ticket_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ticketId;
 
     @Size(max = 64, message = "Typ biletu nie może przekraczać {max} znaków")
-    @Column(name = "ticket_type")
+    @javax.persistence.Column(name = "ticket_type")
     private String type;
 
-    @Column(name = "ticket_price")
+    @javax.persistence.Column(name = "ticket_price")
     private BigDecimal price;
 
-    @Column(name = "active")
+    @javax.persistence.Column(name = "active")
     private boolean active;
 }

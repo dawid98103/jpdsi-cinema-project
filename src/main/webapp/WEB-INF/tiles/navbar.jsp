@@ -20,58 +20,56 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav pull-right">
+
                 <li class="${pagina.endsWith('/') ? 'active' : ''}"><a
                         href="${ctx}/">Home</a></li>
                 <li class="${pagina.endsWith('/movies') ? 'active' : ''}"><a
                         href="${ctx}/movie/info/movies">Baza filmów</a></li>
                 <li class="${pagina.endsWith('/movie/ranking') ? 'active' : ''}"><a href="${ctx}/movie/ranking">Ranking
                     filmów</a></li>
+
                 <security:authorize access="hasAnyAuthority('USER','ADMIN')">
                     <li class="${pagina.endsWith('/repertoireOverview') ? 'active' : ''}"><a
                             href="${ctx}/showing/repertoireOverview">Repertuar</a></li>
                 </security:authorize>
+
                 <security:authorize access="hasAnyAuthority('USER','ADMIN')">
                     <li class="nav-button"><a class="${pagina.endsWith('/myReservationPage') ? 'active' : ''}"
                                               href="${ctx}/showing/myReservation">Moje rezerwacje</a></li>
                 </security:authorize>
+
                 <security:authorize access="hasAuthority('ADMIN')">
                     <li class="nav-button"><a href="${ctx}/admin/userManage">Zarządzaj</a></li>
                 </security:authorize>
+
                 <li class="${pagina.endsWith('/showPriceList') ? 'active' : ''}"><a
                         href="${ctx}/priceList/showPriceList">Cennik</a>
                 </li>
+
                 <sec:authorize access="!isAuthenticated()">
                     <li class="nav-button">
-                        <a class="${pagina.endsWith('/showLogin') ? 'active' : ''}" href="${ctx}/login/loginForm">
+                        <a class="${pagina.endsWith('/showLogin') ? 'active' : ''}" href="${ctx}/loginForm">
                             Zaloguj
                         </a>
                     </li>
                 </sec:authorize>
+
                 <sec:authorize access="!isAuthenticated()">
                     <li class="nav-button">
-                        <a class="${pagina.endsWith('/registration') ? 'active' : ''}" href="${ctx}/login/registration">
+                        <a class="${pagina.endsWith('/registration') ? 'active' : ''}" href="${ctx}/registrationForm">
                             Zarejestruj
                         </a>
                     </li>
                 </sec:authorize>
+
                 <sec:authorize access="isAuthenticated()">
-                    <%--                    <li>--%>
-                    <%--                        <a href="/">--%>
-                    <%--                            Witaj ${pageContext.request.userPrincipal.name}--%>
-                    <%--                            <span class="glyphicon glyphicon-user"></span>--%>
-                    <%--                        </a>--%>
-                    <%--                    </li>--%>
-                    <%--                    <li>--%>
-                    <%--                        <a class="btn" href="/logout">--%>
-                    <%--                            Wyloguj--%>
-                    <%--                        </a>--%>
-                    <%--                    </li>--%>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                                 class="fas fa-user-circle fa-2x"></i></a>
                         <ul class="dropdown-menu">
                             <li class="nav-list-item list-user-name"><span>${pageContext.request.remoteUser}</span></li>
                             <li class="nav-list-item"><a href="sidebar-left.html">Ustawienia</a></li>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <li class="active nav-list-item"><a href="/logout">Wyloguj</a></li>
                         </ul>
                     </li>

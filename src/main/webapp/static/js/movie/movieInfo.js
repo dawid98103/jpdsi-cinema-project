@@ -27,7 +27,6 @@ function initializeStarRating() {
         showCaption: false,
         showClear: false,
         starCaptions: captions,
-        clearCaption: "Oceń"
     });
 }
 

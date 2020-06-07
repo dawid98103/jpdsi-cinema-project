@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class TicketQuantity {
 
     @Id
-    @Column(name = "TICKET_QUANTITY")
+    @javax.persistence.Column(name = "TICKET_QUANTITY")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ticketQuantityId;
 
@@ -22,7 +22,7 @@ public class TicketQuantity {
     @JoinColumn(name = "RESERVATION_ID")
     private Reservation reservation;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TICKET_ID")
     private Ticket ticket;
 

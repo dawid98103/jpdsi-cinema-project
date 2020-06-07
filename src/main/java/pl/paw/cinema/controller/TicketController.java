@@ -1,4 +1,4 @@
-package pl.paw.cinema.controller.movie;
+package pl.paw.cinema.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package pl.paw.cinema.controller.home;
+package pl.paw.cinema.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,11 +15,10 @@ public class HomeController {
 
     private final MovieService movieService;
 
-    @GetMapping(value = "/")
+    @GetMapping(value = {"/", "welcome"})
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
         List<Movie> movies = movieService.findAll();
-        modelAndView.addObject("text", "text");
         modelAndView.addObject("movieList", movies);
         modelAndView.setViewName("home");
         return modelAndView;
