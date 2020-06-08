@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Projekt zaliczeniowy pwai">
-    <meta name="author" content="Sergey Pozhilov (GetTemplate.com)">
+    <meta name="author" content="Dawid Kobylarz (GetTemplate.com)">
 
     <title><tiles:insertAttribute name="title"/></title>
 

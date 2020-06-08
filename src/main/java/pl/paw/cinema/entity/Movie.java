@@ -1,5 +1,6 @@
 package pl.paw.cinema.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,36 +16,35 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-@Table(name = "movie")
+@Table(name = "MOVIE")
 public class Movie {
 
     @Id
-    @javax.persistence.Column(name = "movie_id")
+    @javax.persistence.Column(name = "MOVIE_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int movieId;
 
     @Size(max = 64, message = "Nazwa filmu nie może przekraczać {max} znaków")
-    @javax.persistence.Column(name = "movie_name")
+    @javax.persistence.Column(name = "MOVIE_NAME")
     private String movieName;
 
-    @javax.persistence.Column(name = "movie_description")
+    @javax.persistence.Column(name = "MOVIE_DESCRIPTION")
     private String movieDescription;
 
-    @javax.persistence.Column(name = "movie_duration")
+    @javax.persistence.Column(name = "MOVIE_DURATION")
     private Integer movieDuration;
 
-    @javax.persistence.Column(name = "movie_big_url")
-    private String movieBigUrl;
-
-    @javax.persistence.Column(name = "movie_small_url")
+    @javax.persistence.Column(name = "MOVIE_SMALL_URL")
     private String movieSmallUrl;
 
-    @javax.persistence.Column(name = "movie_director")
+    @javax.persistence.Column(name = "MOVIE_DIRECTOR")
     private String movieDirector;
 
-    @javax.persistence.Column(name = "movie_genre")
-    private MovieGenreEnum movieGenre;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "GENRE_ID", nullable = false)
+    @JsonIgnore
+    private Genre genre;
 
     @Formula("(select AVG(Rate.mark) from Rate where Rate.movie_id = movie_id)")
-    private Integer averageRate;
+    private Double averageRate;
 }

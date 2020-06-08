@@ -44,7 +44,6 @@ public class MovieController {
         return modelAndView;
     }
 
-
 //    @GetMapping("/repertoire")
 //    public ModelAndView showReservationPage(@ModelAttribute("date") ShowingDateModel showingDateModel) {
 //        ModelAndView modelAndView = new ModelAndView();

@@ -3,10 +3,12 @@ package pl.paw.cinema.model.request;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
+import java.math.BigDecimal;
+
 @Getter
+@Setter
 public class MovieRateRequest {
 
     private int movieId;
-    private int rate;
+    private BigDecimal rate;
 }

@@ -22,12 +22,6 @@ public class ShowingController {
     private final ShowingService showingService;
     private final ReservationService reservationService;
 
-//    @GetMapping("/repertoire/{dateFrom}/{dateTo}")
-//    public List<MovieShowingResponseModel> getShowingsByDate(@PathVariable long dateFrom, @PathVariable long dateTo) {
-//        System.out.println(showingService.getShowingsByDates(dateFrom, dateTo).size());
-//        return showingService.getShowingsByDates(dateFrom, dateTo);
-//    }
-
     @PostMapping("/repertoire")
     public ResponseEntity<?> processReservation(@RequestBody AddReservationRequest addReservationRequest) {
         reservationService.saveReservation(addReservationRequest);

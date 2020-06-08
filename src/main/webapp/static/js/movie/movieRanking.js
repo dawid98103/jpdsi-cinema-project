@@ -11,9 +11,6 @@ function initializeDataTable() {
         serverSide: true,
         columns: [
             {
-                data: 'movieId'
-            },
-            {
                 data: 'movieSmallUrl',
                 render: (data) => {
                     return `<img src=${data} width="100px">`;
@@ -25,6 +22,7 @@ function initializeDataTable() {
             {
                 data: 'averageRate',
             }
-        ]
+        ],
+        order: [[2, "desc"]]
     })
 }

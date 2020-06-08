@@ -10,7 +10,6 @@ import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "ticket")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,17 +17,17 @@ import java.math.BigDecimal;
 public class Ticket {
 
     @Id
-    @javax.persistence.Column(name = "ticket_id")
+    @javax.persistence.Column(name = "TICKET_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ticketId;
 
     @Size(max = 64, message = "Typ biletu nie może przekraczać {max} znaków")
-    @javax.persistence.Column(name = "ticket_type")
+    @javax.persistence.Column(name = "TICKET_TYPE")
     private String type;
 
-    @javax.persistence.Column(name = "ticket_price")
+    @javax.persistence.Column(name = "TICKET_PRICE")
     private BigDecimal price;
 
-    @javax.persistence.Column(name = "active")
+    @javax.persistence.Column(name = "ACTIVE")
     private boolean active;
 }

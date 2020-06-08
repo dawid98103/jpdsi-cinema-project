@@ -42,39 +42,59 @@
 <div class="jumbotron top-space">
     <div class="container">
 
-        <h3 class="text-center thin">Znajdziesz nas tutaj</h3>
+        <h3 class="text-center thin">Aktualności</h3>
 
         <div class="row">
             <div class="col-md-3 col-sm-6 highlight">
-                <div class="h-caption"><h4><i class="fa fa-cogs fa-5"></i>Bootstrap-powered</h4></div>
-                <div class="h-body text-center">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aliquid adipisci aspernatur.
-                        Soluta quisquam dignissimos earum quasi voluptate. Amet, dignissimos, tenetur vitae dolor quam
-                        iusto assumenda hic reprehenderit?</p>
+                <div class="panel panel-default home-panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Promocje</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sapien ante, consequat ultrices justo ut, iaculis vulputate augue.</p>
+                        <p>Donec feugiat felis scelerisque erat tristique, vitae luctus justo gravida. Aenean vel diam magna.</p>
+                        <p>In sit amet luctus lorem, a pretium lectus. Nam facilisis orci quis tincidunt rhoncus.</p>
+                        <p>Quisque eu massa arcu. Etiam congue commodo faucibus. Aenean id nulla et leo volutpat imperdiet non vel dui.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 highlight">
-                <div class="h-caption"><h4><i class="fa fa-flash fa-5"></i>Fat-free</h4></div>
-                <div class="h-body text-center">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, commodi, sequi quis ad
-                        fugit omnis cumque a libero error nesciunt molestiae repellat quos perferendis numquam quibusdam
-                        rerum repellendus laboriosam reprehenderit! </p>
+                <div class="panel panel-default home-panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Wydarzenia</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sapien ante, consequat ultrices justo ut, iaculis vulputate augue.</p>
+                        <p>Donec feugiat felis scelerisque erat tristique, vitae luctus justo gravida. Aenean vel diam magna.</p>
+                        <p>In sit amet luctus lorem, a pretium lectus. Nam facilisis orci quis tincidunt rhoncus.</p>
+                        <p>Quisque eu massa arcu. Etiam congue commodo faucibus. Aenean id nulla et leo volutpat imperdiet non vel dui.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 highlight">
-                <div class="h-caption"><h4><i class="fa fa-heart fa-5"></i>Creative Commons</h4></div>
-                <div class="h-body text-center">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, vitae, perferendis,
-                        perspiciatis nobis voluptate quod illum soluta minima ipsam ratione quia numquam eveniet eum
-                        reprehenderit dolorem dicta nesciunt corporis?</p>
+                <div class="panel panel-default home-panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Firmy</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sapien ante, consequat ultrices justo ut, iaculis vulputate augue.</p>
+                        <p>Donec feugiat felis scelerisque erat tristique, vitae luctus justo gravida. Aenean vel diam magna.</p>
+                        <p>In sit amet luctus lorem, a pretium lectus. Nam facilisis orci quis tincidunt rhoncus.</p>
+                        <p>Quisque eu massa arcu. Etiam congue commodo faucibus. Aenean id nulla et leo volutpat imperdiet non vel dui.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 highlight">
-                <div class="h-caption"><h4><i class="fa fa-smile-o fa-5"></i>Author's support</h4></div>
-                <div class="h-body text-center">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, excepturi, maiores, dolorem
-                        quasi reprehenderit illo accusamus nulla minima repudiandae quas ducimus reiciendis odio sequi
-                        atque temporibus facere corporis eos expedita? </p>
+                <div class="panel panel-default home-panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Szkoły</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sapien ante, consequat ultrices justo ut, iaculis vulputate augue.</p>
+                        <p>Donec feugiat felis scelerisque erat tristique, vitae luctus justo gravida. Aenean vel diam magna.</p>
+                        <p>In sit amet luctus lorem, a pretium lectus. Nam facilisis orci quis tincidunt rhoncus.</p>
+                        <p>Quisque eu massa arcu. Etiam congue commodo faucibus. Aenean id nulla et leo volutpat imperdiet non vel dui.</p>
+                    </div>
                 </div>
             </div>
         </div> <!-- /row  -->
