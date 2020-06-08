@@ -44,7 +44,7 @@
                     value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.min.js"/>
             <add-attribute
                     value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js"/>
-            <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/locales/pl.js"/>
+            <add-attribute value="/static/js/star-rating_locale_pl.js"/>
             <add-attribute value="/static/js/movie/movieInfo.js"></add-attribute>
         </put-list-attribute>
         <put-list-attribute name="stylesheets" inherit="true">
@@ -125,6 +125,11 @@
             <add-attribute
                     value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/css/star-rating.css"/>
         </put-list-attribute>
+    </definition>
+
+    <definition name="accessDenied" extends="base">
+        <put-attribute name="title" value="Dostęp zabroniony"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/view/accessDenied.jsp"/>
     </definition>
 
     <definition name="signIn" extends="base">

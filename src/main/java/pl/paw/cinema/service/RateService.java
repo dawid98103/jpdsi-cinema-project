@@ -9,7 +9,7 @@ import pl.paw.cinema.entity.User;
 import pl.paw.cinema.model.request.MovieRateRequest;
 import pl.paw.cinema.repository.RateRepository;
 
-import java.util.List;
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
@@ -39,9 +39,9 @@ public class RateService {
         }
     }
 
-    public int getValueForUser(int movieId) {
+    public BigDecimal getValueForUser(int movieId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User retrievedUser = userDetailsService.getCurrentUserId(auth.getName());
-        return rateRepository.findByUserIdAndMovieId(retrievedUser.getId(), movieId).map(Rate::getMark).orElse(0);
+        return rateRepository.findByUserIdAndMovieId(retrievedUser.getId(), movieId).map(Rate::getMark).orElse(BigDecimal.ZERO);
     }
 }

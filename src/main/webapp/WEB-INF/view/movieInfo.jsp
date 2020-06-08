@@ -39,7 +39,7 @@
                             <div class="panel movie-info-panel">
                                 <ul class="list-group dark">
                                     <li class="list-group-item dark">
-                                        <div>Gatunek: ${movie.movieGenre.name()}</div>
+                                        <div>Gatunek: ${movie.genre.genreName}</div>
                                     </li>
                                     <li class="list-group-item dark">
                                         <div>Reżyser: ${movie.movieDirector}</div>

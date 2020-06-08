@@ -23,4 +23,9 @@ public class HomeController {
         modelAndView.setViewName("home");
         return modelAndView;
     }
+
+    @GetMapping(value = "/access-denied")
+    public String error(){
+        return "accessDenied";
+    }
 }

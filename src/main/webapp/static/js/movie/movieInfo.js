@@ -1,16 +1,4 @@
 const movieId = $('#rate-input').data("movie-id");
-const captions = {
-    0.5: 'Zły',
-    1: 'Słaby',
-    1.5: 'Zły',
-    2: 'Średni',
-    2.5: 'Zły',
-    3: 'Dobry',
-    3.5: 'Zły',
-    4: 'Bardzo Dobry',
-    4.5: 'Four & Half Stars',
-    5: 'Arcydzieło!'
-}
 
 $(document).ready(() => {
     initializeStarRating();
@@ -19,14 +7,13 @@ $(document).ready(() => {
 })
 
 function initializeStarRating() {
-    console.log(sessionStorage.getItem('status'))
     $('#rate-input').rating({
+        language: "PLpl",
         min: 0,
         max: 5,
-        step: 1,
+        step: 0.5,
         showCaption: false,
-        showClear: false,
-        starCaptions: captions,
+        showClear: false
     });
 }
 

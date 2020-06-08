@@ -85,18 +85,22 @@ form {
     background: transparent;
 }
 
-.basic-thead {
-    background-color: black;
-    text-align: center;
-}
-
-.basic-trows {
-    background-color: #262626;
-}
-
 #showingDates {
     margin: 0px;
     padding: 15px;
+}
+
+
+#price-list-table {
+    background-color: black;
+}
+
+#price-list-table td {
+    text-align: center;
+}
+
+#price-list-table th {
+    text-align: center;
 }
 
 #showingTable {
@@ -363,10 +367,14 @@ div.home-photo {
     background-color: black;
 }
 
+.home-panel panel-body{
+    background-color: lightgray;
+    color: black;
+}
+
 .panel-body > .row {
     color: white;
 }
-
 
 .panel-body > .row > hr {
     margin: 20px 0px 20px 0px;
@@ -391,10 +399,6 @@ div.home-photo {
     padding: 10px;
     background-color: rgba(78, 78, 78, 0.1);
     border: 1px solid rgba(62, 62, 62, 0.5);
-}
-
-.panel-body {
-    background-color: black;
 }
 
 .panel-body.row {
@@ -705,4 +709,13 @@ button.count {
 
 .datatable-container{
     margin-bottom: 15px;
+}
+
+.basic-thead {
+    background-color: black;
+    text-align: center;
+}
+
+.basic-trows {
+    background-color: #262626;
 }

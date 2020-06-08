@@ -9,7 +9,7 @@ import pl.paw.cinema.service.RateService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/rate")
+@RequestMapping(value = "/rate")
 public class RateController {
 
     private final RateService rateService;
@@ -17,7 +17,7 @@ public class RateController {
     @PostMapping("/addRate")
     public ResponseEntity<?> addRateToMovie(@RequestBody MovieRateRequest movieRateRequest) {
         rateService.addRateToMovie(movieRateRequest);
-        return new ResponseEntity<>("Dodano ocenę!", HttpStatus.OK);
+        return new ResponseEntity<>("Dodano ocene! ", HttpStatus.OK);
     }
 
     @GetMapping("/getRate/{movieId}")

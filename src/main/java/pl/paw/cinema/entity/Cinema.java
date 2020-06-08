@@ -14,17 +14,16 @@ import javax.persistence.Table;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "cinema")
 @Builder(toBuilder = true)
 public class Cinema {
 
     @Id
-    @Column(name = "cinema_id")
+    @Column(name = "CINEMA_ID")
     private int cinemaId;
 
-    @Column(name = "latitude")
+    @Column(name = "LATITUDE")
     private int latitude;
 
-    @Column(name = "longitude")
+    @Column(name = "LONGITUDE")
     private int longitude;
 }

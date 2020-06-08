@@ -3,6 +3,7 @@ package pl.paw.cinema.entity;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.paw.cinema.utils.serialization.CustomLocalDateTimeDeserializer;
 import pl.paw.cinema.utils.serialization.CustomLocalDateTimeSerializer;
 
@@ -17,36 +18,37 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "reservation")
 @Builder(toBuilder = true)
 public class Reservation implements Serializable {
 
     @Id
-    @javax.persistence.Column(name = "reservation_id")
+    @javax.persistence.Column(name = "RESERVATION_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reservationId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movie_id")
+    @JoinColumn(name = "MOVIE_ID")
     private Movie movie;
 
     @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL)
     private List<TicketQuantity> ticketQuantities;
 
-    @javax.persistence.Column(name = "amount_to_pay")
+    @javax.persistence.Column(name = "AMOUNT_TO_PAY")
     private BigDecimal amountToPay;
 
-    @javax.persistence.Column(name = "reservation_date_start")
+    @javax.persistence.Column(name = "RESERVATION_DATE_START")
     @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
     @JsonSerialize(using = CustomLocalDateTimeSerializer.class)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime reservationDateStart;
 
-    @javax.persistence.Column(name = "reservation_date_end")
+    @javax.persistence.Column(name = "RESERVATION_DATE_END")
     @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
     @JsonSerialize(using = CustomLocalDateTimeSerializer.class)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime reservationDateEnd;
 }

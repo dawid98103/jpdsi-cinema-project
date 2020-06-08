@@ -13,10 +13,6 @@
 <%@ taglib prefix="html" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@include file="modals/confirmModal.jsp" %>
-
-<meta name="_csrf" content="${_csrf.token}"/>
-<meta name="_csrf_header" content="${_csrf.headerName}"/>
-
 <div class="container top-margin">
     <c:choose>
         <c:when test="${reservations.size() > 0}">

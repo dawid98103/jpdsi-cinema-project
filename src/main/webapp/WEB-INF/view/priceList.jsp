@@ -11,12 +11,11 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <div class="container">
     <div class="panel panel-price-list">
-        <table class="table table-striped" id="price-list-table">
+        <table class="table" id="price-list-table">
             <thead class="text-center">
             <tr>
-                <td colspan="2">
-                    <h4>Cennik</h4>
-                </td>
+                <th>Typ biletu</th>
+                <th>Cena</th>
             </tr>
             </thead>
             <tbody>
@@ -26,7 +25,7 @@
                             ${ticket.type}
                     </td>
                     <td>
-                            ${ticket.price}zł
+                            ${ticket.price} zł
                     </td>
                 </tr>
             </c:forEach>

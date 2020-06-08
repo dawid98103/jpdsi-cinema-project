@@ -11,7 +11,6 @@
 <div class="container top-margin datatable-container">
     <table id="rankingTable" class="table" cellspacing="5" cellpadding="5">
         <thead>
-        <th>ID</th>
         <th></th>
         <th>Nazwa Filmu</th>
         <th>Ocena</th>
