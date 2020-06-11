@@ -26,6 +26,29 @@
         </put-list-attribute>
     </definition>
 
+    <definition name="dashBase" template="/WEB-INF/view/layouts/defaultDashboard.jsp">
+        <put-attribute name="navbar" value="/WEB-INF/tiles/navbar.jsp"/>
+        <put-attribute name="title" value=""></put-attribute>
+        <put-attribute name="body" value=""></put-attribute>
+        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
+        <put-list-attribute name="stylesheets">
+            <add-attribute value="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+            <add-attribute value="/static/css/font-awesome.min.css"/>
+            <add-attribute value="/static/css/bootstrap-theme.css"/>
+            <add-attribute value="/static/css/main.css"/>
+        </put-list-attribute>
+        <put-list-attribute name="javascripts">
+            <add-attribute value="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"/>
+            <add-attribute value="/static/js/html5shiv.js"/>
+            <add-attribute value="/static/js/respond.min.js"/>
+            <add-attribute value="/static/js/headroom.min.js"/>
+            <add-attribute value="/static/js/jQuery.headroom.min.js"/>
+            <add-attribute value="/static/js/template.js"/>
+            <add-attribute value="https://kit.fontawesome.com/246d3ce75a.js"/>
+            <add-attribute value="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/>
+        </put-list-attribute>
+    </definition>
+
     <definition name="home" extends="base">
         <put-attribute name="title" value="Home"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/view/home.jsp"/>
@@ -34,6 +57,15 @@
     <definition name="movieBase" extends="base">
         <put-attribute name="title" value="Baza filmów"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/view/movieBase.jsp"/>
+        <put-list-attribute name="javascripts" inherit="true">
+            <add-attribute value="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"/>
+            <add-attribute value="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"/>
+            <add-attribute value="/static/js/jquery-spring.friendly.js"/>
+            <add-attribute value="/static/js/movie/movieBase.js"/>
+        </put-list-attribute>
+        <put-list-attribute name="stylesheets" inherit="true">
+            <add-attribute value="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css"/>
+        </put-list-attribute>
     </definition>
 
     <definition name="movieInfo" extends="base">
@@ -59,10 +91,11 @@
         </put-list-attribute>
     </definition>
 
-    <definition name="myReservationPage" extends="base">
+    <definition name="reservation" extends="base">
         <put-attribute name="title" value="Moje rezerwacje"></put-attribute>
-        <put-attribute name="body" value="/WEB-INF/view/myReservationPage.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/view/reservation.jsp"/>
         <put-list-attribute name="stylesheets" inherit="true">
+            <add-attribute value="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css"/>
             <add-attribute
                     value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.min.css"/>
             <add-attribute
@@ -71,6 +104,8 @@
                     value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/styles/alert-blackgloss.min.css"/>
         </put-list-attribute>
         <put-list-attribute name="javascripts" inherit="true">
+            <add-attribute value="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"/>
+            <add-attribute value="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"/>
             <add-attribute
                     value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.min.js"/>
             <add-attribute value="/static/js/showing/customReservationScript.js"></add-attribute>
@@ -82,9 +117,9 @@
         <put-attribute name="body" value="/WEB-INF/view/priceList.jsp"/>
     </definition>
 
-    <definition name="repertoire" extends="base">
+    <definition name="showing" extends="base">
         <put-attribute name="title" value="Repertuar"></put-attribute>
-        <put-attribute name="body" value="/WEB-INF/view/repertoire.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/view/showing.jsp"/>
         <put-list-attribute name="stylesheets" inherit="true">
             <add-attribute
                     value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.min.css"/>
@@ -108,23 +143,50 @@
         </put-list-attribute>
     </definition>
 
-    <definition name="movieRanking" extends="base">
-        <put-attribute name="title" value="Ranking"></put-attribute>
-        <put-attribute name="body" value="/WEB-INF/view/movieRanking.jsp"/>
+    <definition name="manageUsers" extends="dashBase">
+        <put-attribute name="title" value="Zarządzanie użytkownikami"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/view/manage/manageUsers.jsp"/>
         <put-list-attribute name="javascripts" inherit="true">
-            <add-attribute
-                    value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js"/>
-            <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/locales/pl.js"/>
             <add-attribute value="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"/>
             <add-attribute value="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"/>
             <add-attribute value="/static/js/jquery-spring.friendly.js"/>
-            <add-attribute value="/static/js/movie/movieRanking.js"/>
+            <add-attribute value="/static/js/manage/manageUsers.js"/>
         </put-list-attribute>
         <put-list-attribute name="stylesheets" inherit="true">
             <add-attribute value="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css"/>
-            <add-attribute
-                    value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/css/star-rating.css"/>
         </put-list-attribute>
+    </definition>
+
+    <definition name="manageMovies" extends="dashBase">
+        <put-attribute name="title" value="Zarządzanie Filmami"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/view/manage/manageMovies.jsp"/>
+        <put-list-attribute name="javascripts" inherit="true">
+            <add-attribute value="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"/>
+            <add-attribute value="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"/>
+            <add-attribute value="/static/js/jquery-spring.friendly.js"/>
+            <add-attribute value="/static/js/manage/manageMovies.js"/>
+        </put-list-attribute>
+        <put-list-attribute name="stylesheets" inherit="true">
+            <add-attribute value="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css"/>
+        </put-list-attribute>
+    </definition>
+
+    <definition name="manageShowings" extends="dashBase">
+        <put-attribute name="title" value="Zarządzanie Seansami"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/view/manage/manageShowings.jsp"/>
+        <put-list-attribute name="javascripts" inherit="true">
+            <add-attribute value="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"/>
+            <add-attribute value="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"/>
+            <add-attribute value="/static/js/jquery-spring.friendly.js"/>
+            <add-attribute value="/static/js/manage/manageShowings.js"/>
+        </put-list-attribute>
+        <put-list-attribute name="stylesheets" inherit="true">
+            <add-attribute value="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css"/>
+        </put-list-attribute>
+    </definition>
+
+    <definition name="adminDashboard" extends="dashBase">
+        <put-attribute name="title" value="Panel Administracyjny"></put-attribute>
     </definition>
 
     <definition name="accessDenied" extends="base">

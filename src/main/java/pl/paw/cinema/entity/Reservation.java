@@ -3,7 +3,6 @@ package pl.paw.cinema.entity;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 import pl.paw.cinema.utils.serialization.CustomLocalDateTimeDeserializer;
 import pl.paw.cinema.utils.serialization.CustomLocalDateTimeSerializer;
 
@@ -43,12 +42,10 @@ public class Reservation implements Serializable {
     @javax.persistence.Column(name = "RESERVATION_DATE_START")
     @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
     @JsonSerialize(using = CustomLocalDateTimeSerializer.class)
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime reservationDateStart;
 
     @javax.persistence.Column(name = "RESERVATION_DATE_END")
     @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
     @JsonSerialize(using = CustomLocalDateTimeSerializer.class)
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime reservationDateEnd;
 }

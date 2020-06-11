@@ -25,8 +25,6 @@
                         href="${ctx}/">Home</a></li>
                 <li class="${pagina.endsWith('/movies') ? 'active' : ''}"><a
                         href="${ctx}/movie/info/movies">Baza filmów</a></li>
-                <li class="${pagina.endsWith('/movie/ranking') ? 'active' : ''}"><a href="${ctx}/movie/ranking">Ranking
-                    filmów</a></li>
 
                 <security:authorize access="hasAnyAuthority('USER','ADMIN')">
                     <li class="${pagina.endsWith('/repertoireOverview') ? 'active' : ''}"><a
@@ -39,7 +37,7 @@
                 </security:authorize>
 
                 <security:authorize access="hasAuthority('ADMIN')">
-                    <li class="nav-button"><a href="${ctx}/admin/userManage">Zarządzaj</a></li>
+                    <li class="nav-button"><a href="${ctx}/admin/adminDashboard">Zarządzaj</a></li>
                 </security:authorize>
 
                 <li class="${pagina.endsWith('/showPriceList') ? 'active' : ''}"><a
@@ -68,7 +66,6 @@
                                 class="fas fa-user-circle fa-2x"></i></a>
                         <ul class="dropdown-menu">
                             <li class="nav-list-item list-user-name"><span>${pageContext.request.remoteUser}</span></li>
-                            <li class="nav-list-item"><a href="sidebar-left.html">Ustawienia</a></li>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <li class="active nav-list-item"><a href="/logout">Wyloguj</a></li>
                         </ul>

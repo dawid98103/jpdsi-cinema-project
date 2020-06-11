@@ -11,10 +11,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@include file="modals/reserveModal.jsp" %>
-
-<meta name="_csrf" content="${_csrf.token}"/>
-<meta name="_csrf_header" content="${_csrf.headerName}"/>
-
 <div class="container top-margin datatable-container">
     <table id="showingTable" class="table" cellspacing="5" cellpadding="5">
         <thead>
