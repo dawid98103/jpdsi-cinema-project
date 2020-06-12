@@ -30,14 +30,14 @@ public class ShowingController {
 
     @GetMapping("/repertoireOverview")
     public ModelAndView showRepertoire() {
-        return new ModelAndView("repertoire");
+        return new ModelAndView("showing");
     }
 
     @GetMapping("/myReservation")
     public ModelAndView myReservation() {
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("reservation");
         modelAndView.addObject("reservations", reservationService.findAllReservationsByCurrentUser());
-        modelAndView.setViewName("myReservationPage");
         return modelAndView;
     }
 

@@ -1,6 +1,8 @@
 package pl.paw.cinema.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
+import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 import org.springframework.stereotype.Service;
 import pl.paw.cinema.entity.Role;
 import pl.paw.cinema.entity.User;
@@ -18,6 +20,10 @@ public class UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
+    public DataTablesOutput<User> findAll(DataTablesInput input) {
+        return userRepository.findAll(input);
+    }
+
     public User findUserByUserName(String userName) {
         return userRepository.findByUsername(userName);
     }
@@ -25,7 +31,7 @@ public class UserService {
     public User saveUser(User user) {
         user.setPassword(passwordEncoder().encode(user.getPassword()));
         user.setActive(true);
-        Role userRole = roleRepository.findByRole("USER");
+        Role userRole = roleRepository.findByRoleName("USER");
         user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
         return userRepository.save(user);
     }

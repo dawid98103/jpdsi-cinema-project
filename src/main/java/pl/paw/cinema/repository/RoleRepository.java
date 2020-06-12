@@ -6,5 +6,5 @@ import pl.paw.cinema.utils.serialization.DataTablesJpaRepository;
 
 @Repository
 public interface RoleRepository extends DataTablesJpaRepository<Role, Integer> {
-    Role findByRole(String role);
+    Role findByRoleName(String role);
 }

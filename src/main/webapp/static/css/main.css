@@ -1,5 +1,6 @@
 body {
     background-color: black;
+    min-height: 100vh;
 }
 
 hr {
@@ -143,6 +144,17 @@ form {
     #head .lead {
         font-size: 34px;
     }
+}
+
+#footer {
+    position: fixed;
+    padding: 5px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #191919;
+    color: #777;
+    text-align: center;
 }
 
 .vertical {
@@ -299,42 +311,6 @@ img.pull-left {
 /*    }*/
 /*}*/
 
-/* Footer */
-
-.footer2 {
-    background: #191919;
-    padding: 15px 0;
-    color: #777;
-    font-size: 12px;
-    clear: both;
-    position: relative;
-    width: 100%
-}
-
-.footer2 a {
-    color: #aaa;
-}
-
-.footer2 a:hover {
-    color: #fff;
-}
-
-.footer2 p {
-    margin: 0;
-}
-
-.widget-simplenav {
-    margin-left: -5px;
-}
-
-.widget-simplenav a {
-    margin: 0 5px;
-}
-
-/*.row {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*}*/
 .panel-price-list {
     margin-top: 150px;
     color: white;
@@ -497,6 +473,11 @@ div.home-photo-text {
     border: 1px solid rgba(255, 255, 255, 0.2);
     font-family: "Open sans", Helvetica, Arial;
     color: white;
+}
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
 }
 
 /*li.list-group-item {*/
@@ -718,4 +699,14 @@ button.count {
 
 .basic-trows {
     background-color: #262626;
+}
+
+td.details-control {
+    text-align:center;
+    color:forestgreen;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    text-align:center;
+    color:red;
 }

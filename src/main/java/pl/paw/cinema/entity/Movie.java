@@ -1,12 +1,10 @@
 package pl.paw.cinema.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Formula;
-import pl.paw.cinema.utils.enums.MovieGenreEnum;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -42,7 +40,6 @@ public class Movie {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "GENRE_ID", nullable = false)
-    @JsonIgnore
     private Genre genre;
 
     @Formula("(select AVG(Rate.mark) from Rate where Rate.movie_id = movie_id)")

@@ -2,8 +2,11 @@ const movieId = $('#rate-input').data("movie-id");
 
 $(document).ready(() => {
     initializeStarRating();
-    loadInitRate();
     initializeRateInput();
+    console.log($('#rate-input'));
+    if ($('#rate-input').is(':enabled')) {
+        loadInitRate();
+    }
 })
 
 function initializeStarRating() {

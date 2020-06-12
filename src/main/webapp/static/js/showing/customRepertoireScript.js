@@ -1,6 +1,3 @@
-const token = $("meta[name='_csrf']").attr("content");
-const header = $("meta[name='_csrf_header']").attr("content");
-
 $(document).ready(() => {
     initializeDataTable();
     initializeModal();
@@ -64,6 +61,7 @@ function initializeModal() {
                                     <div class="col-lg-8">
                                         <div class='inc-dec-container'>
                                             <select class="form-control ticket-quantity" data-ticketId="${ticketId}">
+                                                <option>0</option>
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>
@@ -93,7 +91,6 @@ function initializeModal() {
 
         $("#reservationFormModal").on('submit', (e) => {
             e.preventDefault();
-            console.log("zapisz rezerwacje!");
             saveReservation(movieId, showingId);
         })
     });
@@ -114,9 +111,6 @@ function saveReservation(movieId, showingId) {
 
     $.ajax({
         type: "POST",
-        beforeSend: (request) => {
-            request.setRequestHeader(header, token);
-        },
         url: '/showing/reservation',
         dateType: "json",
         contentType: "application/json; charset=utf-8",

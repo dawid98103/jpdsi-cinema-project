@@ -21,6 +21,10 @@ public class ReservationService {
     private final TicketService ticketService;
     private final TicketQuantityService ticketQuantityService;
 
+    public List<Reservation> findAllReservations(){
+        return reservationRepository.findAll();
+    }
+
     public List<Reservation> findAllReservationsByCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User retrievedUser = userDetailsService.getCurrentUserId(auth.getName());
