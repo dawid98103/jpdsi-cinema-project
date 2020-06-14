@@ -13,21 +13,21 @@ public class ManageController {
 
     @GetMapping("/adminDashboard")
     public ModelAndView showAdminPage() {
-        return new ModelAndView("manage/adminDashboard");
+        return new ModelAndView("adminDashboard");
     }
 
     @GetMapping("/manage/users")
     public ModelAndView showUsersManagePage() {
-        return new ModelAndView("manage/manageUsers");
+        return new ModelAndView("manageUsers");
     }
 
     @GetMapping("/manage/movies")
     public ModelAndView showMoviesManagePage() {
-        return new ModelAndView("manage/manageMovies");
+        return new ModelAndView("manageMovies");
     }
 
     @GetMapping("/manage/showings")
     public ModelAndView showShowingsManagePage() {
-        return new ModelAndView("manage/manageShowings");
+        return new ModelAndView("manageShowings");
     }
 }

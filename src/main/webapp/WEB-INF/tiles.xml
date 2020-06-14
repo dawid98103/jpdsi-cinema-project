@@ -161,12 +161,17 @@
         <put-attribute name="title" value="Zarządzanie Filmami"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/view/manage/manageMovies.jsp"/>
         <put-list-attribute name="javascripts" inherit="true">
+            <add-attribute value="http://notifyjs.com/dist/notify-combined.min.js"/>
             <add-attribute value="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"/>
             <add-attribute value="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"/>
+            <add-attribute
+                    value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.min.js"/>
             <add-attribute value="/static/js/jquery-spring.friendly.js"/>
             <add-attribute value="/static/js/manage/manageMovies.js"/>
         </put-list-attribute>
         <put-list-attribute name="stylesheets" inherit="true">
+            <add-attribute
+                    value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.min.css"/>
             <add-attribute value="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css"/>
         </put-list-attribute>
     </definition>
@@ -175,6 +180,7 @@
         <put-attribute name="title" value="Zarządzanie Seansami"></put-attribute>
         <put-attribute name="body" value="/WEB-INF/view/manage/manageShowings.jsp"/>
         <put-list-attribute name="javascripts" inherit="true">
+            <add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"/>
             <add-attribute value="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"/>
             <add-attribute value="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"/>
             <add-attribute value="/static/js/jquery-spring.friendly.js"/>

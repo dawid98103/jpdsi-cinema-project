@@ -47,7 +47,7 @@ function initializeModal() {
         $.ajax({
             type: "GET",
             url: "/ticket",
-            dateType: "json",
+            dateType: "JSON",
             contentType: "application/json; charset=utf-8",
             success: (data, status) => {
                 data.forEach(ticket => {
@@ -80,7 +80,7 @@ function initializeModal() {
             }
         })
 
-        let triggerLink = $(e.relatedTarget)
+        let triggerLink = $(e.relatedTarget);
         let movieId = triggerLink.data("movie-id")
         let movieName = triggerLink.data("movie-name");
         let showingId = triggerLink.data("showing-id");
@@ -125,7 +125,7 @@ function saveReservation(movieId, showingId) {
         },
         error: (xhr, status, error) => {
             console.log(xhr);
-            $('.top-right').notify({message: {text: "dsds"}}).show();
+            $('.top-right').notify({message: {text: "Wystąpił nieoczekiwany bład!"}}).show();
         }
     })
 }

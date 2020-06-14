@@ -38,7 +38,7 @@ public class Movie {
     @javax.persistence.Column(name = "MOVIE_DIRECTOR")
     private String movieDirector;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "GENRE_ID", nullable = false)
     private Genre genre;
 

@@ -34,7 +34,6 @@
     <ul class="nav nav-tabs nav-justified">
         <li class="${pagina.endsWith('/users') ? 'active' : ''}"><a href="${ctx}/admin/manage/users">Użytkownicy</a></li>
         <li class="${pagina.endsWith('/movies') ? 'active' : ''}"><a href="${ctx}/admin/manage/movies">Filmy</a></li>
-        <li class="${pagina.endsWith('/showings') ? 'active' : ''}"><a href="${ctx}/admin/manage/showings">Seanse</a></li>
     </ul>
     <tiles:insertAttribute name="body"/>
 </div>

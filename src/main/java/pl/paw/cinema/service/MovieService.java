@@ -6,6 +6,7 @@ import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 import org.springframework.stereotype.Service;
 import pl.paw.cinema.entity.Movie;
 import pl.paw.cinema.exception.MovieNotFoundException;
+import pl.paw.cinema.model.request.AddMovieRequest;
 import pl.paw.cinema.repository.MovieRepository;
 
 import java.util.List;
@@ -15,6 +16,25 @@ import java.util.List;
 public class MovieService {
 
     private final MovieRepository movieRepository;
+    private final GenreService genreService;
+
+    public void create(AddMovieRequest addMovieRequest) {
+        movieRepository.save(
+                Movie.builder()
+                        .movieId(addMovieRequest.getMovieId())
+                        .movieName(addMovieRequest.getMovieName())
+                        .movieDescription(addMovieRequest.getMovieDescription())
+                        .movieDirector(addMovieRequest.getMovieDirector())
+                        .movieDuration(addMovieRequest.getMovieDuration())
+                        .genre(genreService.getOneById(addMovieRequest.getGenreId()))
+                        .movieSmallUrl(addMovieRequest.getMovieSmallUrl())
+                        .build()
+        );
+    }
+
+    public void delete(int movieId){
+        movieRepository.deleteById(movieId);
+    }
 
     public DataTablesOutput<Movie> findAll(DataTablesInput input) {
         return movieRepository.findAll(input);

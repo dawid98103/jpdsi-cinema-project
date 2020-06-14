@@ -3,12 +3,11 @@ package pl.paw.cinema.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
 import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.paw.cinema.entity.Movie;
+import pl.paw.cinema.model.request.AddMovieRequest;
 import pl.paw.cinema.service.MovieService;
 
 @RestController
@@ -18,17 +17,17 @@ public class MovieController {
 
     private final MovieService movieService;
 
-    @GetMapping("")
-    public DataTablesOutput<Movie> getMovies(DataTablesInput input) {
-        return movieService.findAll(input);
-    }
-
     @GetMapping("/info/movies")
     public ModelAndView getAllMovies() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("movies", movieService.findAll());
         modelAndView.setViewName("movieBase");
         return modelAndView;
+    }
+
+    @GetMapping("")
+    public DataTablesOutput<Movie> getMovies(DataTablesInput input) {
+        return movieService.findAll(input);
     }
 
     @GetMapping("/ranking")
@@ -42,6 +41,23 @@ public class MovieController {
         modelAndView.addObject("movie", movieService.findMovieById(movieId));
         modelAndView.setViewName("movieInfo");
         return modelAndView;
+    }
+
+    @GetMapping("/{movieId}")
+    public Movie getMovie(@PathVariable int movieId){
+        return movieService.findMovieById(movieId);
+    }
+
+    @PostMapping("")
+    public ResponseEntity<?> addMovie(@RequestBody AddMovieRequest addMovieRequest) {
+        movieService.create(addMovieRequest);
+        return ResponseEntity.ok("Pomyślnie dodano film");
+    }
+
+    @DeleteMapping("/{movieId}")
+    public ResponseEntity<?> deleteMovie(@PathVariable int movieId) {
+        movieService.delete(movieId);
+        return ResponseEntity.ok("Pomyślnie usunięto film");
     }
 
 //    @GetMapping("/repertoire")
