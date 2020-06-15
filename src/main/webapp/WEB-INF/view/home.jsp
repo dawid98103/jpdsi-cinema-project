@@ -51,10 +51,10 @@
                         <h3 class="panel-title">Promocje</h3>
                     </div>
                     <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sapien ante, consequat ultrices justo ut, iaculis vulputate augue.</p>
-                        <p>Donec feugiat felis scelerisque erat tristique, vitae luctus justo gravida. Aenean vel diam magna.</p>
-                        <p>In sit amet luctus lorem, a pretium lectus. Nam facilisis orci quis tincidunt rhoncus.</p>
-                        <p>Quisque eu massa arcu. Etiam congue commodo faucibus. Aenean id nulla et leo volutpat imperdiet non vel dui.</p>
+                        <p>Dołącz już dziś do Unlimited i chodź z dzieckiem do kina za darmo!.</p>
+                        <p>Tylko teraz do swojego członkostwa otrzymasz Kartę Family</p>
+                        <p>a wraz z nią 6 biletów dziecięcych gratis do wykorzystania na wspólne, rodzinne wypady do kina.</p>
+                        <p>Zobacz jakie to proste!.</p>
                     </div>
                 </div>
             </div>
@@ -64,10 +64,10 @@
                         <h3 class="panel-title">Wydarzenia</h3>
                     </div>
                     <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sapien ante, consequat ultrices justo ut, iaculis vulputate augue.</p>
-                        <p>Donec feugiat felis scelerisque erat tristique, vitae luctus justo gravida. Aenean vel diam magna.</p>
-                        <p>In sit amet luctus lorem, a pretium lectus. Nam facilisis orci quis tincidunt rhoncus.</p>
-                        <p>Quisque eu massa arcu. Etiam congue commodo faucibus. Aenean id nulla et leo volutpat imperdiet non vel dui.</p>
+                        <p>Cinema City Bonarka i Wroclavia są jedynymi multipleksami w Polsce z odrębną strefą VIP z 3</p>
+                        <p>salami kinowymi i ofertą all inclusive. Od teraz oferujemy dwa warianty wizyty w naszej strefie.</p>
+                        <p>Strefa VIP gwarantuje również wyjątkową atmosferę w klimatycznym lobby i oglądanie filmów z perspektywy luksusowych, rozkładanych foteli.</p>
+                        <p>VIP all inclusive to zimne i  gorące dania, przygotowywane na miejscu przez profesjonalnych szefów kuchni, wszystko bez ograniczeń i wszystko wliczone w cenę biletu</p>
                     </div>
                 </div>
             </div>
@@ -77,10 +77,10 @@
                         <h3 class="panel-title">Firmy</h3>
                     </div>
                     <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sapien ante, consequat ultrices justo ut, iaculis vulputate augue.</p>
-                        <p>Donec feugiat felis scelerisque erat tristique, vitae luctus justo gravida. Aenean vel diam magna.</p>
-                        <p>In sit amet luctus lorem, a pretium lectus. Nam facilisis orci quis tincidunt rhoncus.</p>
-                        <p>Quisque eu massa arcu. Etiam congue commodo faucibus. Aenean id nulla et leo volutpat imperdiet non vel dui.</p>
+                        <p>Najlepsze konferencje, szkolenia, imprezy integracyjne, gale i inne wydarzenia organizowane specjalnie w celu budowania relacji biznesowych mogą</p>
+                        <p>dostarczać uczestnikom solidnej dawki adrenaliny. W centrum rozrywki Spin City, </p>
+                        <p>zlokalizowanym w warszawskiej dzielnicy Bemowo połączonym z kinem</p>
+                        <p>Cinema City pomożemy Ci uczynić każde wydarzenie niezapomnianym.</p>
                     </div>
                 </div>
             </div>
@@ -90,10 +90,10 @@
                         <h3 class="panel-title">Szkoły</h3>
                     </div>
                     <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sapien ante, consequat ultrices justo ut, iaculis vulputate augue.</p>
-                        <p>Donec feugiat felis scelerisque erat tristique, vitae luctus justo gravida. Aenean vel diam magna.</p>
-                        <p>In sit amet luctus lorem, a pretium lectus. Nam facilisis orci quis tincidunt rhoncus.</p>
-                        <p>Quisque eu massa arcu. Etiam congue commodo faucibus. Aenean id nulla et leo volutpat imperdiet non vel dui.</p>
+                        <p>Nasze propozycje filmowe to nie tylko rozrywka, ale również programy edukacyjne.</p>
+                        <p>skierowane do uczniów i nauczycieli. W każdym kinie odbywają się cykliczne</p>
+                        <p>spotkania edukacyjne z filmem „Kino na Temat” – dla młodzieży oraz „Kino na Temat</p>
+                        <p>Junior” – dla dzieci.</p>
                     </div>
                 </div>
             </div>

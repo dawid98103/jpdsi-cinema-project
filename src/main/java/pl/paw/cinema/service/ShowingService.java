@@ -5,8 +5,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
 import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 import org.springframework.stereotype.Service;
+import pl.paw.cinema.entity.Movie;
 import pl.paw.cinema.entity.Showing;
+import pl.paw.cinema.model.request.AddShowingRequest;
 import pl.paw.cinema.repository.ShowingRepository;
+
+import java.time.Instant;
+import java.time.ZoneId;
 
 @Service
 @Data
@@ -14,6 +19,22 @@ import pl.paw.cinema.repository.ShowingRepository;
 public class ShowingService {
 
     private final ShowingRepository showingRepository;
+    private final MovieService movieService;
+
+    public void save(AddShowingRequest addShowingRequest) {
+        System.out.println(addShowingRequest.getShowingTimestamp());
+        Movie movie = movieService.findMovieById(addShowingRequest.getMovieId());
+        showingRepository.save(
+                Showing.builder()
+                        .showingId(0)
+                        .movieId(addShowingRequest.getMovieId())
+                        .movieName(movie.getMovieName())
+                        .showingDate(Instant.ofEpochMilli(addShowingRequest.getShowingTimestamp()).atZone(ZoneId.systemDefault()).toLocalDateTime())
+                        .showingDuration(movie.getMovieDuration())
+                        .showingImgUrl(movie.getMovieSmallUrl())
+                        .build()
+        );
+    }
 
     public DataTablesOutput<Showing> getAllShowings(DataTablesInput input) {
         return showingRepository.findAll(input);

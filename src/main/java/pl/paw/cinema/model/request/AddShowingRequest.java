@@ -1,19 +1,13 @@
 package pl.paw.cinema.model.request;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.Builder;
-import lombok.Data;
-import pl.paw.cinema.utils.serialization.CustomLocalDateTimeDeserializer;
-import pl.paw.cinema.utils.serialization.CustomLocalDateTimeSerializer;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
-@Data
-@Builder(toBuilder = true)
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class AddShowingRequest {
     private int movieId;
-    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
-    @JsonSerialize(using = CustomLocalDateTimeSerializer.class)
-    private LocalDateTime showingDateTime;
+    private long showingTimestamp;
 }

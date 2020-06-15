@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.paw.cinema.entity.Showing;
 import pl.paw.cinema.model.request.AddReservationRequest;
+import pl.paw.cinema.model.request.AddShowingRequest;
 import pl.paw.cinema.service.ReservationService;
 import pl.paw.cinema.service.ShowingService;
 
@@ -39,6 +40,12 @@ public class ShowingController {
         modelAndView.setViewName("reservation");
         modelAndView.addObject("reservations", reservationService.findAllReservationsByCurrentUser());
         return modelAndView;
+    }
+
+    @PostMapping("")
+    public ResponseEntity<?> saveShowing(@RequestBody AddShowingRequest addShowingRequest) {
+        showingService.save(addShowingRequest);
+        return new ResponseEntity<>("Operacja przebiegła pomyślnie", HttpStatus.OK);
     }
 
     @GetMapping("")

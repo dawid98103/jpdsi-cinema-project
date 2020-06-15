@@ -1,6 +1,10 @@
+let movieId = 0;
+let showingId = 0;
+
 $(document).ready(() => {
     initializeDataTable();
     initializeModal();
+    initializeSubmit();
 })
 
 $("#showingTable_filter").css("display", "none");
@@ -81,22 +85,24 @@ function initializeModal() {
         })
 
         let triggerLink = $(e.relatedTarget);
-        let movieId = triggerLink.data("movie-id")
+        this.movieId = triggerLink.data("movie-id")
         let movieName = triggerLink.data("movie-name");
-        let showingId = triggerLink.data("showing-id");
+        this.showingId = triggerLink.data("showing-id");
         let showingImg = triggerLink.data("showing-img");
 
         $(e.currentTarget).find('.movie-name').text(movieName);
         $(e.currentTarget).find('#modal-img').attr('src', showingImg);
-
-        $("#reservationFormModal").on('submit', (e) => {
-            e.preventDefault();
-            saveReservation(movieId, showingId);
-        })
     });
 }
 
-function saveReservation(movieId, showingId) {
+function initializeSubmit() {
+    $("#reservationFormModal").on('submit', (e) => {
+        e.preventDefault();
+        saveReservation(this.movieId, this.showingId);
+    })
+}
+
+function saveReservation() {
     let ticketToAdd = [];
     let counters = $(".ticket-quantity");
     console.log(counters);
@@ -108,15 +114,14 @@ function saveReservation(movieId, showingId) {
             }
         )
     }
-
     $.ajax({
         type: "POST",
         url: '/showing/reservation',
         dateType: "json",
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify({
-            movieId: movieId,
-            showingId: showingId,
+            movieId: this.movieId,
+            showingId: this.showingId,
             ticketList: ticketToAdd
         }),
         success: () => {
@@ -124,8 +129,11 @@ function saveReservation(movieId, showingId) {
             $("#reservationFormModal").modal('hide');
         },
         error: (xhr, status, error) => {
-            console.log(xhr);
-            $('.top-right').notify({message: {text: "Wystąpił nieoczekiwany bład!"}}).show();
+            $('.top-right').notify({
+                message: {text: 'Wystąpił nieoczekiwany bład!'},
+                type: "danger",
+                allow_dismiss: true
+            }).show();
         }
     })
 }

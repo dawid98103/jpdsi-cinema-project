@@ -1,8 +1,12 @@
 let dataTable;
+let movieId = 0;
 
 $(document).ready(() => {
     initializeTable();
     initializeModals();
+    initializeSubmit();
+    initializeShowing();
+    initializeDelete();
 })
 
 function initializeTable() {
@@ -43,8 +47,13 @@ function initializeTable() {
 }
 
 function initializeModals() {
-    $(document).on("click", ".open-create-dialog", (event) => {
+    $(document).on("click", ".open-create-dialog", (e) => {
         $("#inputGenre").find('option').remove();
+        $("#inputName").val("");
+        $("#inputDescription").val("")
+        $("#inputDuration").val(0)
+        $("#inputUrl").val("")
+        $("#inputDirector").val("")
         $.ajax({
             type: "GET",
             url: "/genre",
@@ -56,7 +65,6 @@ function initializeModals() {
                         .append($('<option>', {value: value.genreId})
                             .text(value.genreName));
                 });
-                initializeSubmit(0);
             },
             error: (response) => {
                 console.log(response);
@@ -65,7 +73,7 @@ function initializeModals() {
     })
 
     $(document).on("click", ".open-edit-dialog", (event) => {
-        let movieId = $(event.target).data('id');
+        this.movieId = $(event.target).data('id');
         $("#inputGenre").find('option').remove();
         $.ajax({
             type: "GET",
@@ -80,7 +88,7 @@ function initializeModals() {
                 });
                 $.ajax({
                     type: "GET",
-                    url: `/movie/${movieId}`,
+                    url: `/movie/${this.movieId}`,
                     dataType: "JSON",
                     contentType: "application/json; charset=utf-8",
                     success: (data, status) => {
@@ -95,7 +103,6 @@ function initializeModals() {
                         console.log(response);
                     }
                 })
-                initializeSubmit(movieId);
             },
             error: (response) => {
                 console.log(response);
@@ -104,30 +111,52 @@ function initializeModals() {
     })
 
     $("#confirmModal").on('show.bs.modal', (e) => {
-        console.log("delete");
         let triggerLink = $(e.relatedTarget);
-        let movieId = (triggerLink.data("id"));
-        initializeDelete(movieId);
+        this.movieId = (triggerLink.data("id"));
     })
 
     $("#createShowingModal").on('show.bs.modal', (e) => {
         let triggerLink = $(e.relatedTarget);
-        let movieId = triggerLink.data("id");
+        this.movieId = triggerLink.data("id");
         let movieName = triggerLink.data("name");
         let movieImg = triggerLink.data("img");
 
         $(e.currentTarget).find('#movie-name').text(movieName);
         $(e.currentTarget).find('#modal-img').attr('src', movieImg);
-
-        initializeShowing(movieId);
     })
 }
 
-function initializeShowing(movieId) {
-
+function initializeShowing() {
+    $("#saveShowingButton").on('click', (e) => {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/showing",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+                movieId: this.movieId,
+                showingTimestamp: new Date($("#datepicker").val()).getTime()
+            }),
+            success: (status) => {
+                console.log(status);
+                $("#createShowingModal").modal('hide');
+                $('.top-right').notify({message: {text: 'Operacja wykonana pomyślnie'}}).show();
+                this.dataTable.ajax.reload();
+            },
+            error: (response) => {
+                console.log(response);
+                $('.top-right').notify({
+                    message: {text: 'Wystąpił nieoczekiwany bład!'},
+                    type: "danger"
+                }).show();
+                $("#confirmModal").modal('hide');
+                this.dataTable.ajax.reload();
+            }
+        })
+    })
 }
 
-function initializeSubmit(movieId) {
+function initializeSubmit() {
     $("#saveMovieButton").on('click', (event) => {
         event.preventDefault();
         $.ajax({
@@ -135,7 +164,7 @@ function initializeSubmit(movieId) {
             url: "/movie",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({
-                movieId: movieId,
+                movieId: this.movieId,
                 movieName: $("#inputName").val(),
                 movieDescription: $("#inputDescription").val(),
                 movieDuration: parseInt($("#inputDuration").val(), 10),
@@ -160,22 +189,22 @@ function initializeSubmit(movieId) {
     })
 }
 
-function initializeDelete(movieId) {
-    console.log(movieId);
+function initializeDelete() {
     $("#confirmModal").on('submit', (event) => {
         event.preventDefault();
         $.ajax({
             type: "DELETE",
-            url: `/movie/${movieId}`,
+            url: `/movie/${this.movieId}`,
             success: () => {
-                $('.top-right').notify({message: {text: 'Rezerwacja usunięta pomyślnie!'}}).show();
+                $('.top-right').notify({message: {text: 'Film usunięty pomyślnie!'}}).show();
                 $("#confirmModal").modal('hide');
                 this.dataTable.ajax.reload();
             },
             error: (xhr, status, error) => {
                 $('.top-right').notify({
                     message: {text: 'Wystąpił nieoczekiwany bład!'},
-                    type: "danger"
+                    type: "danger",
+                    allow_dismiss: true
                 }).show();
                 $("#confirmModal").modal('hide');
                 this.dataTable.ajax.reload();
